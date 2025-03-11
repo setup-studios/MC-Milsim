@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "mc_milsim:block/beispiel_block"
+    }
+  }
+}
