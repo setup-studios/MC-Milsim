@@ -1,7 +1,11 @@
 {
   "item.mc_milsim.beispiel": "Beispiel",
+  "item.mc_milsim.raw_beispiel": "Raw Beispiel",
+  "item.mc_milsim.beispiel_food": "Meat",
+  "item.mc_milsim.beispiel_fuel": "FUEL!!!",
 
   "block.mc_milsim.beispiel_block" : "Beispiel Block",
+  "block.mc_milsim.steve_block": "Block of Steve",
 
   "creativetab.beispiel_tab": "Beispiel Tab"
 }

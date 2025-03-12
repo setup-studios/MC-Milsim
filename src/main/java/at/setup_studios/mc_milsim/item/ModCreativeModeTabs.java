@@ -20,8 +20,12 @@ public class ModCreativeModeTabs {
                     .title(Component.translatable("creativetab.beispiel_tab"))
                     .displayItems((itemDisplayParameters, output) -> {
                             output.accept(ModItems.BEISPIEL.get());
+                            output.accept(ModItems.RAW_BEISPIEL.get());
+                            output.accept(ModItems.BEISPIEL_FOOD.get());
+                            output.accept(ModItems.BEISPIEL_FUEL.get());
 
                             output.accept(ModBlocks.BEISPIEL_BLOCK.get());
+                            output.accept(ModBlocks.STEVE_BLOCK.get());
                     })
                     .build());
 
