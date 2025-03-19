@@ -6,6 +6,9 @@
 
   "block.mc_milsim.beispiel_block" : "Beispiel Block",
   "block.mc_milsim.steve_block": "Block of Steve",
+  "block.mc_milsim.gravity_block": "Block of Falling",
+  "block.mc_milsim.feuer_block": "Block of Smite",
+  "block.mc_milsim.neuer_block": "Block of Candles",
 
   "creativetab.beispiel_tab": "Beispiel Tab"
 }

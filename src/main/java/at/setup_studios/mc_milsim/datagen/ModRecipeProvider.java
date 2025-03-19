@@ -42,6 +42,15 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .requires(ModBlocks.BEISPIEL_BLOCK.get())
                 .unlockedBy(getHasName(ModBlocks.BEISPIEL_BLOCK.get()), has(ModBlocks.BEISPIEL_BLOCK.get()))
                 .save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.GRAVITY_BLOCK.get())
+                .pattern("AB")
+                .pattern("BA")
+                .define('B', ModBlocks.BEISPIEL_BLOCK.get())
+                .define('A', ModItems.BEISPIEL.get())
+                .unlockedBy(getHasName(ModItems.BEISPIEL.get()), has(ModItems.BEISPIEL.get()))
+                .unlockedBy(getHasName(ModBlocks.BEISPIEL_BLOCK.get()), has(ModBlocks.BEISPIEL_BLOCK.get()))
+                .save(consumer);
     }
     protected static void oreSmelting(Consumer<FinishedRecipe> pFinishedRecipeConsumer, List<ItemLike> pIngredients, RecipeCategory pCategory, ItemLike pResult, float pExperience, int pCookingTIme, String pGroup) {
         oreCooking(pFinishedRecipeConsumer, RecipeSerializer.SMELTING_RECIPE, pIngredients, pCategory, pResult, pExperience, pCookingTIme, pGroup, "_from_smelting");

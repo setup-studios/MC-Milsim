@@ -17,6 +17,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
     protected void registerStatesAndModels() {
         blockWithItem(ModBlocks.BEISPIEL_BLOCK);
         blockWithItem(ModBlocks.STEVE_BLOCK);
+        blockWithItem(ModBlocks.GRAVITY_BLOCK);
+        blockWithItem(ModBlocks.FIRE_BLOCK);
+        //blockWithItem(ModBlocks.NEUER_BLOCK);
     }
 
     private void blockWithItem(RegistryObject<Block> block) {

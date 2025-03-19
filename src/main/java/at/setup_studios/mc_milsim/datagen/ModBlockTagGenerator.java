@@ -23,6 +23,15 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE)
                 .add(ModBlocks.BEISPIEL_BLOCK.get());
 
+        this.tag(BlockTags.FIRE)
+                .add(ModBlocks.FIRE_BLOCK.get());
+
+        //this.tag(BlockTags.CANDLES)
+                //.add(ModBlocks.NEUER_BLOCK.get());
+
+        this.tag(BlockTags.MINEABLE_WITH_SHOVEL)
+                .add(ModBlocks.GRAVITY_BLOCK.get());
+
         this.tag(BlockTags.NEEDS_IRON_TOOL)
                 .add(ModBlocks.BEISPIEL_BLOCK.get());
 

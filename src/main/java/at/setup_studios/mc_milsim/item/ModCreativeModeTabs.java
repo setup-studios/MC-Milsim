@@ -26,6 +26,9 @@ public class ModCreativeModeTabs {
 
                             output.accept(ModBlocks.BEISPIEL_BLOCK.get());
                             output.accept(ModBlocks.STEVE_BLOCK.get());
+                            output.accept(ModBlocks.GRAVITY_BLOCK.get());
+                            output.accept(ModBlocks.FIRE_BLOCK.get());
+                            //output.accept(ModBlocks.NEUER_BLOCK.get());
                     })
                     .build());
 

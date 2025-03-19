@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/at.setup_studios.mc_milsim.main.iml" filepath="$PROJECT_DIR$/.idea/modules/at.setup_studios.mc_milsim.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/at.setup_studios.mc_milsim.test.iml" filepath="$PROJECT_DIR$/.idea/modules/at.setup_studios.mc_milsim.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/mc_milsim.main.iml" filepath="$PROJECT_DIR$/.idea/modules/mc_milsim.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/mc_milsim.test.iml" filepath="$PROJECT_DIR$/.idea/modules/mc_milsim.test.iml" />
     </modules>

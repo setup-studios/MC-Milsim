@@ -26,9 +26,12 @@ public class ModBlockLootTables extends BlockLootSubProvider {
     @Override
     protected void generate() {
         this.dropSelf(ModBlocks.BEISPIEL_BLOCK.get());
-
+        this.dropSelf(ModBlocks.FIRE_BLOCK.get());
+        //this.dropSelf(ModBlocks.NEUER_BLOCK.get());
         this.add(ModBlocks.STEVE_BLOCK.get(),
                 block -> createOreDrops(ModBlocks.STEVE_BLOCK.get(), ModItems.RAW_BEISPIEL.get()));
+
+        this.dropOther(ModBlocks.GRAVITY_BLOCK.get(), ModItems.BEISPIEL.orElse(ModItems.RAW_BEISPIEL.get()));
     }
 
     protected LootTable.Builder createOreDrops(Block pBlock, Item item) {
