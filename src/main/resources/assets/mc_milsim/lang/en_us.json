@@ -3,12 +3,25 @@
   "item.mc_milsim.raw_beispiel": "Raw Beispiel",
   "item.mc_milsim.beispiel_food": "Meat",
   "item.mc_milsim.beispiel_fuel": "FUEL!!!",
+  "item.mc_milsim.music_shard": "Music Note",
+
+  "item.mc_milsim.emerald_sword": "Emerald Sword",
+  "item.mc_milsim.emerald_pickaxe": "Emerald Pickaxe",
+  "item.mc_milsim.emerald_axe": "Emerald Axe",
+  "item.mc_milsim.emerald_shovel": "Emerald Shovel",
+  "item.mc_milsim.emerald_hoe": "Emerald Hoe :3",
+
+  "item.mc_milsim.emerald_helmet": "Emerald Helmet",
+  "item.mc_milsim.emerald_chestplate": "Emerald Chestplate",
+  "item.mc_milsim.emerald_leggings": "Emerald Leggings",
+  "item.mc_milsim.emerald_boots": "Emerald Boots",
 
   "block.mc_milsim.beispiel_block" : "Beispiel Block",
   "block.mc_milsim.steve_block": "Block of Steve",
   "block.mc_milsim.gravity_block": "Block of Falling",
   "block.mc_milsim.feuer_block": "Block of Smite",
   "block.mc_milsim.neuer_block": "Block of Candles",
+  "block.mc_milsim.music_block": "Block of Sound",
 
   "creativetab.beispiel_tab": "Beispiel Tab"
 }

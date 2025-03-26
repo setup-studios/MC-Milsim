@@ -13,6 +13,7 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.common.crafting.conditions.ICondition;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
@@ -51,6 +52,85 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy(getHasName(ModItems.BEISPIEL.get()), has(ModItems.BEISPIEL.get()))
                 .unlockedBy(getHasName(ModBlocks.BEISPIEL_BLOCK.get()), has(ModBlocks.BEISPIEL_BLOCK.get()))
                 .save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.MUSIC_BLOCK.get())
+                .pattern("AAA")
+                .pattern("AAA")
+                .pattern("AAA")
+                .define('A', ModItems.MUSIC_SHARD.get())
+                .unlockedBy(getHasName(ModItems.MUSIC_SHARD.get()), has(ModItems.MUSIC_SHARD.get()))
+                .save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.EMERALD_SWORD.get())
+                .pattern("A")
+                .pattern("A")
+                .pattern("B")
+                .define('A', Items.EMERALD)
+                .define('B', Items.STICK)
+                .unlockedBy(getHasName(Items.EMERALD), has(Items.EMERALD))
+                .save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.EMERALD_PICKAXE.get())
+                .pattern("AAA")
+                .pattern(" B ")
+                .pattern(" B ")
+                .define('A', Items.EMERALD)
+                .define('B', Items.STICK)
+                .unlockedBy(getHasName(Items.EMERALD), has(Items.EMERALD))
+                .save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.EMERALD_AXE.get())
+                .pattern("AA")
+                .pattern("BA")
+                .pattern("B ")
+                .define('A', Items.EMERALD)
+                .define('B', Items.STICK)
+                .unlockedBy(getHasName(Items.EMERALD), has(Items.EMERALD))
+                .save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.EMERALD_SHOVEL.get())
+                .pattern("A")
+                .pattern("B")
+                .pattern("B")
+                .define('A', Items.EMERALD)
+                .define('B', Items.STICK)
+                .unlockedBy(getHasName(Items.EMERALD), has(Items.EMERALD))
+                .save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.EMERALD_HOE.get())
+                .pattern("AA")
+                .pattern("B ")
+                .pattern("B ")
+                .define('A', Items.EMERALD)
+                .define('B', Items.STICK)
+                .unlockedBy(getHasName(Items.EMERALD), has(Items.EMERALD))
+                .save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.EMERALD_HELMET.get())
+                .pattern("AAA")
+                .pattern("A A")
+                .define('A', Items.EMERALD)
+                .unlockedBy(getHasName(Items.EMERALD), has(Items.EMERALD))
+                .save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.EMERALD_CHESTPLATE.get())
+                .pattern("A A")
+                .pattern("AAA")
+                .pattern("AAA")
+                .define('A', Items.EMERALD)
+                .unlockedBy(getHasName(Items.EMERALD), has(Items.EMERALD))
+                .save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.EMERALD_LEGGINGS.get())
+                .pattern("AAA")
+                .pattern("A A")
+                .pattern("A A")
+                .define('A', Items.EMERALD)
+                .unlockedBy(getHasName(Items.EMERALD), has(Items.EMERALD))
+                .save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.EMERALD_BOOTS.get())
+                .pattern("A A")
+                .pattern("A A")
+                .define('A', Items.EMERALD)
+                .unlockedBy(getHasName(Items.EMERALD), has(Items.EMERALD))
+                .save(consumer);
+
+
+
+
     }
     protected static void oreSmelting(Consumer<FinishedRecipe> pFinishedRecipeConsumer, List<ItemLike> pIngredients, RecipeCategory pCategory, ItemLike pResult, float pExperience, int pCookingTIme, String pGroup) {
         oreCooking(pFinishedRecipeConsumer, RecipeSerializer.SMELTING_RECIPE, pIngredients, pCategory, pResult, pExperience, pCookingTIme, pGroup, "_from_smelting");

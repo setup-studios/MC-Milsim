@@ -23,11 +23,24 @@ public class ModCreativeModeTabs {
                             output.accept(ModItems.RAW_BEISPIEL.get());
                             output.accept(ModItems.BEISPIEL_FOOD.get());
                             output.accept(ModItems.BEISPIEL_FUEL.get());
+                            output.accept(ModItems.MUSIC_SHARD.get());
+
+                            output.accept(ModItems.EMERALD_SWORD.get());
+                            output.accept(ModItems.EMERALD_PICKAXE.get());
+                            output.accept(ModItems.EMERALD_AXE.get());
+                            output.accept(ModItems.EMERALD_SHOVEL.get());
+                            output.accept(ModItems.EMERALD_HOE.get());
+
+                            output.accept(ModItems.EMERALD_HELMET.get());
+                            output.accept(ModItems.EMERALD_CHESTPLATE.get());
+                            output.accept(ModItems.EMERALD_LEGGINGS.get());
+                            output.accept(ModItems.EMERALD_BOOTS.get());
 
                             output.accept(ModBlocks.BEISPIEL_BLOCK.get());
                             output.accept(ModBlocks.STEVE_BLOCK.get());
                             output.accept(ModBlocks.GRAVITY_BLOCK.get());
                             output.accept(ModBlocks.FIRE_BLOCK.get());
+                            output.accept(ModBlocks.MUSIC_BLOCK.get());
                             //output.accept(ModBlocks.NEUER_BLOCK.get());
                     })
                     .build());

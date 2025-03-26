@@ -2,7 +2,10 @@ package at.setup_studios.mc_milsim.block;
 
 import at.setup_studios.mc_milsim.Mc_milsim;
 import at.setup_studios.mc_milsim.block.custom.ExplodingBlock;
+import at.setup_studios.mc_milsim.block.custom.SoundBlock;
 import at.setup_studios.mc_milsim.item.ModItems;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
@@ -46,6 +49,9 @@ public class ModBlocks {
                     return true;
                 }
             });
+    public static final RegistryObject<Block> MUSIC_BLOCK = registerBlock("music_block",
+            () -> new SoundBlock(BlockBehaviour.Properties.copy(Blocks.NOTE_BLOCK), SoundEvents.ENDER_DRAGON_DEATH));
+
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);

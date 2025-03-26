@@ -29,6 +29,12 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
         //this.tag(BlockTags.CANDLES)
                 //.add(ModBlocks.NEUER_BLOCK.get());
 
+        this.tag(BlockTags.ICE)
+                .add(ModBlocks.MUSIC_BLOCK.get());
+
+        this.tag(BlockTags.MINEABLE_WITH_AXE)
+                .add(ModBlocks.MUSIC_BLOCK.get());
+
         this.tag(BlockTags.MINEABLE_WITH_SHOVEL)
                 .add(ModBlocks.GRAVITY_BLOCK.get());
 

@@ -27,11 +27,13 @@ public class ModBlockLootTables extends BlockLootSubProvider {
     protected void generate() {
         this.dropSelf(ModBlocks.BEISPIEL_BLOCK.get());
         this.dropSelf(ModBlocks.FIRE_BLOCK.get());
-        //this.dropSelf(ModBlocks.NEUER_BLOCK.get());
+        //this.dropSelf(ModBlocks.NEUER_BLOCK.get());d
         this.add(ModBlocks.STEVE_BLOCK.get(),
                 block -> createOreDrops(ModBlocks.STEVE_BLOCK.get(), ModItems.RAW_BEISPIEL.get()));
 
         this.dropOther(ModBlocks.GRAVITY_BLOCK.get(), ModItems.BEISPIEL.orElse(ModItems.RAW_BEISPIEL.get()));
+
+        this.dropOther(ModBlocks.MUSIC_BLOCK.get(), ModItems.MUSIC_SHARD.get());
     }
 
     protected LootTable.Builder createOreDrops(Block pBlock, Item item) {
