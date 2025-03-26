@@ -49,11 +49,11 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.BEISPIEL_FUEL);
         simpleItem(ModItems.MUSIC_SHARD);
 
-        simpleItem(ModItems.EMERALD_SWORD);
-        simpleItem(ModItems.EMERALD_PICKAXE);
-        simpleItem(ModItems.EMERALD_AXE);
-        simpleItem(ModItems.EMERALD_SHOVEL);
-        simpleItem(ModItems.EMERALD_HOE);
+        handheldItem(ModItems.EMERALD_SWORD);
+        handheldItem(ModItems.EMERALD_PICKAXE);
+        handheldItem(ModItems.EMERALD_AXE);
+        handheldItem(ModItems.EMERALD_SHOVEL);
+        handheldItem(ModItems.EMERALD_HOE);
 
 
 
@@ -131,11 +131,12 @@ public class ModItemModelProvider extends ItemModelProvider {
                 .texture("wall", new ResourceLocation(Mc_milsim.MOD_ID, "block/" + ForgeRegistries.BLOCKS.getKey(baseBlock.get()).getPath()));
     }
 
-    private ItemModelBuilder handheldItem(RegistryObject<Block> item) {
+    private ItemModelBuilder handheldItem(RegistryObject<Item> item) {
         return withExistingParent(item.getId().getPath(),
                 new ResourceLocation("item/handheld")).texture("layer0",
                 new ResourceLocation(Mc_milsim.MOD_ID, "item/" + item.getId().getPath()));
     }
+
 
     private ItemModelBuilder simpleBlockItem(RegistryObject<Block> item) {
         return withExistingParent(item.getId().getPath(),

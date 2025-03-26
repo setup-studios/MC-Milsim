@@ -10,6 +10,7 @@ import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.fml.common.Mod;
 import org.jetbrains.annotations.Nullable;
+import at.setup_studios.mc_milsim.util.ModTags;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -43,5 +44,8 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 
         this.tag(Tags.Blocks.NEEDS_NETHERITE_TOOL)
                 .add(ModBlocks.STEVE_BLOCK.get());
+
+        this.tag(ModTags.Blocks.NEEDS_EMERALD_TOOL)
+                .add(ModBlocks.MUSIC_BLOCK.get());
     }
 }
