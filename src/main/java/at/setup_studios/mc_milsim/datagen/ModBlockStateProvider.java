@@ -20,6 +20,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.GRAVITY_BLOCK);
         blockWithItem(ModBlocks.FIRE_BLOCK);
         blockWithItem(ModBlocks.MUSIC_BLOCK);
+        blockWithItem(ModBlocks.CURSED_DIRT_BLOCK);
         //blockWithItem(ModBlocks.NEUER_BLOCK);
     }
 

@@ -1,27 +1,21 @@
 package at.setup_studios.mc_milsim.block;
 
 import at.setup_studios.mc_milsim.Mc_milsim;
-import at.setup_studios.mc_milsim.block.custom.ExplodingBlock;
 import at.setup_studios.mc_milsim.block.custom.SoundBlock;
+import at.setup_studios.mc_milsim.fluid.ModFluids;
 import at.setup_studios.mc_milsim.item.ModItems;
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.level.block.entity.ChestBlockEntity;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 import java.util.function.Supplier;
-import java.util.logging.Level;
 
 public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS =
@@ -49,8 +43,21 @@ public class ModBlocks {
                     return true;
                 }
             });
+
     public static final RegistryObject<Block> MUSIC_BLOCK = registerBlock("music_block",
             () -> new SoundBlock(BlockBehaviour.Properties.copy(Blocks.NOTE_BLOCK), SoundEvents.ENDER_DRAGON_DEATH));
+
+    public static final RegistryObject<Block> CURSED_DIRT_BLOCK = registerBlock("cursed_dirt_block",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.DIRT).strength(5f).explosionResistance(5000f)
+                    .jumpFactor(2f).liquid().friction(2f).speedFactor(10f)));
+
+    public static final RegistryObject<LiquidBlock> CHOCOLATE_FLUID_BLOCK = BLOCKS.register("chocolate_fluid_block",
+            () -> new LiquidBlock(ModFluids.SOURCE_CHOCOLATE_FLUID, BlockBehaviour.Properties.copy(Blocks.WATER)));
+
+    public static final RegistryObject<LiquidBlock> MILK_FLUID_BLOCK = BLOCKS.register("reproductive_fluid_block",
+            () -> new LiquidBlock(ModFluids.SOURCE_MILK_FLUID, BlockBehaviour.Properties.copy(Blocks.WATER)));
+
+
 
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {

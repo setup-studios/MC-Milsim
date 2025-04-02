@@ -4,6 +4,9 @@
   "item.mc_milsim.beispiel_food": "Meat",
   "item.mc_milsim.beispiel_fuel": "FUEL!!!",
   "item.mc_milsim.music_shard": "Music Note",
+  "item.mc_milsim.dirt_food": "Just normal Dirt :)",
+  "item.mc_milsim.chocolate_fluid_bucket": "Bucket of Chocolate",
+  "item.mc_milsim.milk_fluid_bucket": "Bucket of Milk",
 
   "item.mc_milsim.emerald_sword": "Emerald Sword",
   "item.mc_milsim.emerald_pickaxe": "Emerald Pickaxe",
@@ -22,6 +25,7 @@
   "block.mc_milsim.feuer_block": "Block of Smite",
   "block.mc_milsim.neuer_block": "Block of Candles",
   "block.mc_milsim.music_block": "Block of Sound",
+  "block.mc_milsim.cursed_dirt_block": "Block of Strangeness",
 
   "creativetab.beispiel_tab": "Beispiel Tab"
 }

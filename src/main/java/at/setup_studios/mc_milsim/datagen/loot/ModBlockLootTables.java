@@ -3,8 +3,6 @@ package at.setup_studios.mc_milsim.datagen.loot;
 import at.setup_studios.mc_milsim.block.ModBlocks;
 import at.setup_studios.mc_milsim.item.ModItems;
 import net.minecraft.data.loot.BlockLootSubProvider;
-import net.minecraft.data.loot.LootTableProvider;
-import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantments;
@@ -27,13 +25,17 @@ public class ModBlockLootTables extends BlockLootSubProvider {
     protected void generate() {
         this.dropSelf(ModBlocks.BEISPIEL_BLOCK.get());
         this.dropSelf(ModBlocks.FIRE_BLOCK.get());
-        //this.dropSelf(ModBlocks.NEUER_BLOCK.get());d
+        //this.dropSelf(ModBlocks.NEUER_BLOCK.get());
+        this.dropOther(ModBlocks.CURSED_DIRT_BLOCK.get(), ModItems.DIRT_FOOD.get());
         this.add(ModBlocks.STEVE_BLOCK.get(),
                 block -> createOreDrops(ModBlocks.STEVE_BLOCK.get(), ModItems.RAW_BEISPIEL.get()));
 
         this.dropOther(ModBlocks.GRAVITY_BLOCK.get(), ModItems.BEISPIEL.orElse(ModItems.RAW_BEISPIEL.get()));
 
         this.dropOther(ModBlocks.MUSIC_BLOCK.get(), ModItems.MUSIC_SHARD.get());
+
+        this.dropSelf(ModBlocks.CHOCOLATE_FLUID_BLOCK.get());
+        this.dropSelf(ModBlocks.MILK_FLUID_BLOCK.get());
     }
 
     protected LootTable.Builder createOreDrops(Block pBlock, Item item) {

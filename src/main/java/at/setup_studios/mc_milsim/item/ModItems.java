@@ -1,8 +1,8 @@
 package at.setup_studios.mc_milsim.item;
 
 import at.setup_studios.mc_milsim.Mc_milsim;
+import at.setup_studios.mc_milsim.fluid.ModFluids;
 import at.setup_studios.mc_milsim.item.custom.FuelItem;
-import at.setup_studios.mc_milsim.item.ModToolTiers;
 import net.minecraft.world.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -23,6 +23,8 @@ public class ModItems {
             () -> new FuelItem(new Item.Properties(),400));
     public static final RegistryObject<Item> MUSIC_SHARD = ITEMS.register("music_shard",
             () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> DIRT_FOOD = ITEMS.register("dirt_food",
+            () -> new Item(new Item.Properties().food(ModFoods.DIRT_FOOD).durability(10)));
 
     public static final RegistryObject<Item> EMERALD_SWORD = ITEMS.register("emerald_sword",
             () -> new SwordItem(ModToolTiers.EMERALD, 124, 2065, new Item.Properties()));
@@ -45,6 +47,12 @@ public class ModItems {
     public static final RegistryObject<Item> EMERALD_BOOTS = ITEMS.register("emerald_boots",
             () -> new ArmorItem(ModArmorMaterials.EMERALD, ArmorItem.Type.BOOTS, new Item.Properties()));
 
+    public static final RegistryObject<Item> CHOCOLATE_FLUID_BUCKET = ITEMS.register("chocolate_fluid_bucket",
+            () -> new BucketItem(ModFluids.SOURCE_CHOCOLATE_FLUID, new Item.Properties().stacksTo(1)
+                    .craftRemainder(Items.BUCKET)));
+    public static final RegistryObject<Item> MILK_FLUID_BUCKET = ITEMS.register("milk_fluid_bucket",
+            () -> new BucketItem(ModFluids.SOURCE_MILK_FLUID, new Item.Properties().stacksTo(1)
+                    .craftRemainder(Items.BUCKET)));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

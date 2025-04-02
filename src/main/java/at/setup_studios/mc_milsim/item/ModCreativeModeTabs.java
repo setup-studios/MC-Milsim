@@ -6,7 +6,6 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
@@ -24,6 +23,9 @@ public class ModCreativeModeTabs {
                             output.accept(ModItems.BEISPIEL_FOOD.get());
                             output.accept(ModItems.BEISPIEL_FUEL.get());
                             output.accept(ModItems.MUSIC_SHARD.get());
+                            output.accept(ModItems.DIRT_FOOD.get());
+                            output.accept(ModItems.CHOCOLATE_FLUID_BUCKET.get());
+                            output.accept(ModItems.MILK_FLUID_BUCKET.get());
 
                             output.accept(ModItems.EMERALD_SWORD.get());
                             output.accept(ModItems.EMERALD_PICKAXE.get());
@@ -42,6 +44,7 @@ public class ModCreativeModeTabs {
                             output.accept(ModBlocks.FIRE_BLOCK.get());
                             output.accept(ModBlocks.MUSIC_BLOCK.get());
                             //output.accept(ModBlocks.NEUER_BLOCK.get());
+                            output.accept(ModBlocks.CURSED_DIRT_BLOCK.get());
                     })
                     .build());
 

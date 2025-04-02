@@ -15,11 +15,9 @@ import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
 public class ModItemModelProvider extends ItemModelProvider {
@@ -48,6 +46,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.BEISPIEL_FOOD);
         simpleItem(ModItems.BEISPIEL_FUEL);
         simpleItem(ModItems.MUSIC_SHARD);
+        simpleItem(ModItems.CHOCOLATE_FLUID_BUCKET);
+        simpleItem(ModItems.MILK_FLUID_BUCKET);
 
         handheldItem(ModItems.EMERALD_SWORD);
         handheldItem(ModItems.EMERALD_PICKAXE);
@@ -55,7 +55,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         handheldItem(ModItems.EMERALD_SHOVEL);
         handheldItem(ModItems.EMERALD_HOE);
 
-
+        handheldItem(ModItems.DIRT_FOOD);
 
         trimmedArmorItem(ModItems.EMERALD_BOOTS);
         trimmedArmorItem(ModItems.EMERALD_CHESTPLATE);

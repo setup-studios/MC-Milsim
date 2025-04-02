@@ -1,10 +1,14 @@
 package at.setup_studios.mc_milsim;
 
 import at.setup_studios.mc_milsim.block.ModBlocks;
+import at.setup_studios.mc_milsim.fluid.ModFluidTypes;
+import at.setup_studios.mc_milsim.fluid.ModFluids;
 import at.setup_studios.mc_milsim.item.ModCreativeModeTabs;
 import at.setup_studios.mc_milsim.item.ModItems;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.BlockItem;
@@ -48,6 +52,8 @@ public class Mc_milsim {
 
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+        ModFluidTypes.register(modEventBus);
+        ModFluids.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
         // Register ourselves for server and other game events we are interested in
@@ -92,6 +98,11 @@ public class Mc_milsim {
             // Some client setup code
             LOGGER.info("HELLO FROM CLIENT SETUP");
             LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
+
+//            ItemBlockRenderTypes.setRenderLayer(ModFluids.SOURCE_CHOCOLATE_FLUID.get(), RenderType.translucent());
+//            ItemBlockRenderTypes.setRenderLayer(ModFluids.FLOWING_CHOCOLATE_FLUID.get(), RenderType.translucent());
+//            ItemBlockRenderTypes.setRenderLayer(ModFluids.SOURCE_MILK_FLUID.get(), RenderType.translucent());
+//            ItemBlockRenderTypes.setRenderLayer(ModFluids.FLOWING_MILK_FLUID.get(), RenderType.translucent());
         }
     }
 }

@@ -34,7 +34,8 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                 .add(ModBlocks.MUSIC_BLOCK.get());
 
         this.tag(BlockTags.MINEABLE_WITH_AXE)
-                .add(ModBlocks.MUSIC_BLOCK.get());
+                .add(ModBlocks.MUSIC_BLOCK.get())
+                .add(ModBlocks.CURSED_DIRT_BLOCK.get());
 
         this.tag(BlockTags.MINEABLE_WITH_SHOVEL)
                 .add(ModBlocks.GRAVITY_BLOCK.get());
@@ -46,6 +47,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                 .add(ModBlocks.STEVE_BLOCK.get());
 
         this.tag(ModTags.Blocks.NEEDS_EMERALD_TOOL)
-                .add(ModBlocks.MUSIC_BLOCK.get());
+                .add(ModBlocks.MUSIC_BLOCK.get())
+                .add(ModBlocks.CURSED_DIRT_BLOCK.get());
     }
 }
