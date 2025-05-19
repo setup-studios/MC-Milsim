@@ -4,12 +4,42 @@
 ![Forge](https://img.shields.io/badge/Forge-47.4.0-blue)
 ![License](https://img.shields.io/badge/License-MIT-red)
 ![Status](https://img.shields.io/badge/Status-Alpha-yellow)
+<p>
+  <a href="https://www.minecraft.net/de-de/article/minecraft--java-edition-1-20-1">
+    <img src="https://img.shields.io/badge/Minecraft-1.20.1-green"/>
+  </a>
+  <a href="https://files.minecraftforge.net/net/minecraftforge/forge/index_1.20.1.html">
+    <img src="https://img.shields.io/badge/Forge-47.4.0-blue"/>
+  </a>
+  <a href="https://github.com/Louis3797/awesome-readme-template/network/members">
+    <img src="https://img.shields.io/github/forks/Louis3797/awesome-readme-template" alt="forks" />
+  </a>
+  <a href="https://github.com/Louis3797/awesome-readme-template/stargazers">
+    <img src="https://img.shields.io/github/stars/Louis3797/awesome-readme-template" alt="stars" />
+  </a>
+  <a href="https://github.com/Louis3797/awesome-readme-template/issues/">
+    <img src="https://img.shields.io/github/issues/Louis3797/awesome-readme-template" alt="open issues" />
+  </a>
+  <a href="https://github.com/Louis3797/awesome-readme-template/blob/master/LICENSE">
+    <img src="https://img.shields.io/github/license/Louis3797/awesome-readme-template.svg" alt="license" />
+  </a>
+</p>
+
+<h1 align="center">MC-Milsim  <br>
+	<a href="https://www.minecraft.net/de-de/article/minecraft--java-edition-1-20-1"><img src="https://img.shields.io/badge/Minecraft-1.20.1-green"</a>
+	<a href="https://www.curseforge.com/minecraft/mc-mods/create/files"><img src="https://cf.way2muchnoise.eu/versions/328085(c70039).svg" alt="Supported Versions"></a>
+	<a href="https://github.com/Creators-of-Create/Create/blob/master/LICENSE"><img src="https://img.shields.io/github/license/Creators-of-Create/Create?style=flat&color=900c3f" alt="License"></a>
+	<a href="https://discord.gg/hmaD7Se"><img src="https://img.shields.io/discord/620934202875183104?color=5865f2&label=Discord&style=flat" alt="Discord"></a>
+	<a href="https://www.curseforge.com/minecraft/mc-mods/create"><img src="http://cf.way2muchnoise.eu/328085.svg" alt="CF"></a>
+    <a href="https://modrinth.com/mod/create"><img src="https://img.shields.io/modrinth/dt/create?logo=modrinth&label=&suffix=%20&style=flat&color=242629&labelColor=5ca424&logoColor=1c1c1c" alt="Modrinth"></a>
+    <br><br>
+</h1>
 
 > 📚 Looking for gameplay info or setup help? Check out the [**MC-Milsim Wiki**](#) *(coming soon)*
 
 **MC-Milsim** is a Minecraft mod that brings the realistic experience of modern military simulation (Milsim) to the world of Minecraft. Inspired by *Squad*, the mod focuses on team-based tactical combat, vehicle warfare, and immersive military mechanics.
 
-The project is still in early development, with many features under construction. But our goal is clear: to offer a highly strategic, cooperative multiplayer experience where teamwork is key, all within the world of Minecraft.
+The project is still in early development, with many features under construction. But our goal is clear: to offer a highly strategic, cooperative multiplayer experience where teamwork is key, all within Minecraft.
 
 
 ## 🚀 Features
@@ -75,29 +105,13 @@ We appreciate contributions from the community! Whether you're fixing bugs, sugg
   Focuses on smaller features and general improvements to the mod, enhancing the overall experience.
 
 * **Milkychicken** - Developer
-  Works on additional features and game mechanics, contributing more to core gameplay systems.
+  Works on additional features and game mechanics, contributing more to core gameplay systems. (God Developer, he will make it big one day. He still says he has no idea how things work)
 
 ## 📚 Roadmap
 
 The roadmap for MC-Milsim is focused on evolving the mod into a complete military simulation experience. Here are some of the key milestones:
 
-### Phase 1: Core Features
-
-* **Combat Mechanics**: Realistic gunplay, bullet drop, and recoil.
-* **Role System**: Different roles with unique abilities.
-* **Vehicles**: Basic vehicle mechanics and handling.
-
-### Phase 2: Teamplay Focused Enhancements
-
-* **Voice Communication**: Seamless integration of squad-based voice communication.
-* **Squad Management**: Tools to manage squads, players, and roles effectively.
-* **Large-Scale Maps**: Expanding the world with military-inspired terrains.
-
-### Phase 3: Refinement & Polishing
-
-* **Bug Fixes**: Addressing community issues and bugs.
-* **Feature Enhancements**: Improvements to existing features based on player feedback.
-* **Expanding Content**: Adding more weapons, vehicles, and tactical equipment.
+>(in works)
 
 ## 💬 Community & Support
 
