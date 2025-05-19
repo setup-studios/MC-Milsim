@@ -1,7 +1,8 @@
 # MC-Milsim
 
-![Minecraft](https://img.shields.io/badge/Minecraft-%3E%3D1.18-blue)
-![License](https://img.shields.io/badge/License-MIT-green)
+![Minecraft](https://img.shields.io/badge/Minecraft-1.20.1-green)
+![Forge](https://img.shields.io/badge/Forge-47.4.0-blue)
+![License](https://img.shields.io/badge/License-MIT-red)
 ![Status](https://img.shields.io/badge/Status-Alpha-yellow)
 
 > 📚 Looking for gameplay info or setup help? Check out the [**MC-Milsim Wiki**](#) *(coming soon)*
@@ -26,16 +27,15 @@ To install MC-Milsim, follow these steps:
 
 ### Requirements
 
-* **Minecraft Version**: 1.18 and above
-* **Forge/Fabric**: Required modloader (check your Minecraft version for compatibility)
+* **Minecraft Version**: 1.20.1
+* **Modloader**: Forge
 
 ### Installation Steps
 
-1. **Install Minecraft**: Make sure you have Minecraft installed (version 1.18 or higher).
-2. **Install Forge or Fabric**: Download and install Forge or Fabric (depending on your Minecraft version).
+1. **Install Minecraft**: Make sure you have Minecraft installed (version 1.20.1 or higher).
+2. **Install Forge**: Download and install Forge.
 
-   * [Forge Downloads](https://files.minecraftforge.net/)
-   * [Fabric Downloads](https://fabricmc.net/use/)
+   * [Forge Download](https://files.minecraftforge.net/net/minecraftforge/forge/index_1.20.1.html)
 3. **Download MC-Milsim**: Download the latest `.jar` file for MC-Milsim from our [Releases](https://github.com/setup-studios/MC-Milsim/releases) page.
 4. **Place the Mod File**: Move the downloaded `.jar` file into the `mods` folder in your Minecraft directory.
 
@@ -148,6 +148,6 @@ We would like to thank the following individuals and projects for their inspirat
 
 * **Squad** for being the inspiration behind MC-Milsim's core mechanics.
 * **Minecraft** for providing the platform that makes all this possible.
-* **Forge/Fabric** for providing the modding frameworks.
+* **Forge** for providing the modding frameworks.
 
 > “Success is the sum of small efforts, repeated day in and day out.” — Robert Collier
