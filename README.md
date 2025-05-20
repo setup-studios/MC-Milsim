@@ -1,17 +1,28 @@
+<div align="center">
+  
+[//]: # (Project banner/or logo here)
+
 # MC-Milsim
 
-![Minecraft](https://img.shields.io/badge/Minecraft-1.20.1-green)
-![Forge](https://img.shields.io/badge/Forge-47.4.0-blue)
-![License](https://img.shields.io/badge/License-MIT-red)
-![Status](https://img.shields.io/badge/Status-Alpha-yellow)
+[![Minecraft](https://img.shields.io/badge/Minecraft-1.20.1-green.svg)](https://www.minecraft.net/) 
+[![Forge](https://img.shields.io/badge/Forge-Latest-orange.svg)](https://files.minecraftforge.net/net/minecraftforge/forge/) 
+[![Status](https://img.shields.io/badge/Status-pre--Alpha-blue.svg)](https://github.com/setup-studios/MC-Milsim)
+<h4>
+    <a href="https://github.com/setup-studios/MC-Milsim/docs">MC-Milsim Wiki</a>
+  <span> · </span>
+    <a href="https://github.com/setup-studios/MC-Milsim/issues">Report Bug</a>
+  <span> · </span>
+    <a href="https://github.com/setup-studios/MC-Milsim/issues/">Request Feature</a>
+  </h4>
 
-> 📚 Looking for gameplay info or setup help? Check out the [**MC-Milsim Wiki**](#) *(coming soon)*
+</div>
 
 **MC-Milsim** is a Minecraft mod that brings the realistic experience of modern military simulation (Milsim) to the world of Minecraft. Inspired by *Squad*, the mod focuses on team-based tactical combat, vehicle warfare, and immersive military mechanics.
 
-The project is still in early development, with many features under construction. But our goal is clear: to offer a highly strategic, cooperative multiplayer experience where teamwork is key, all within the world of Minecraft.
+>   [!IMPORTANT]
+> The project is still in early development, with many features under construction.
 
-
+<!-- not need for now, because we cant provide the features yet.
 ## 🚀 Features
 
 * **Team-Based Gameplay**: Experience large-scale, tactical combat where coordination and communication are key.
@@ -20,7 +31,9 @@ The project is still in early development, with many features under construction
 * **Vehicle Warfare**: Use a variety of military vehicles, from armored trucks to tanks, with realistic control and combat mechanics.
 * **Voice Chat Integration**: Seamlessly integrated in-game voice communication, mimicking the communication style of real military squads.
 * **Dynamic Environments**: Large-scale maps inspired by real-world military layouts and immersive combat scenarios.
+-->
 
+<!-- We dont need this yet
 ## 🛠️ Installation
 
 To install MC-Milsim, follow these steps:
@@ -45,60 +58,9 @@ To install MC-Milsim, follow these steps:
 
 > **Note:** This mod is still in the alpha phase, so expect occasional bugs and missing features!
 
-## 💻 Contributing
+-->
 
-We appreciate contributions from the community! Whether you're fixing bugs, suggesting features, or adding new content, you can help shape the future of MC-Milsim.
-
-### How to Contribute:
-
-1. **Fork the Repository**: Create a personal copy of the repository.
-2. **Create a Branch**: For each feature or bugfix, create a new branch with a clear name.
-3. **Make Changes**: Implement your changes or improvements.
-4. **Submit a Pull Request**: Push your changes and create a pull request to merge into the `main` branch.
-5. **Follow the Guidelines**: Please check our [Contribution Guidelines](./CONTRIBUTING.md) and [Code of Conduct](./CODE_OF_CONDUCT.md).
-
-### Code Style
-
-* Use Java conventions for Minecraft modding.
-* Please ensure your code is well-commented.
-* Stick to clear and descriptive commit messages.
-
-## 🔧 Development Team
-
-* **SchlangeGoto** - Founder & Lead Concept Writer
-  The visionary behind MC-Milsim. SchlangeGoto conceived the idea and drives the overall direction of the project. He writes the core concepts and outlines gameplay mechanics.
-
-* **Thatsmarterguy** - Co-Founder & Developer
-  Joined early to shape the development of MC-Milsim. As a core developer, he contributes to coding the foundational systems and overall gameplay mechanics.
-
-* **Venicro** - Developer
-  Focuses on smaller features and general improvements to the mod, enhancing the overall experience.
-
-* **Milkychicken** - Developer
-  Works on additional features and game mechanics, contributing more to core gameplay systems.
-
-## 📚 Roadmap
-
-The roadmap for MC-Milsim is focused on evolving the mod into a complete military simulation experience. Here are some of the key milestones:
-
-### Phase 1: Core Features
-
-* **Combat Mechanics**: Realistic gunplay, bullet drop, and recoil.
-* **Role System**: Different roles with unique abilities.
-* **Vehicles**: Basic vehicle mechanics and handling.
-
-### Phase 2: Teamplay Focused Enhancements
-
-* **Voice Communication**: Seamless integration of squad-based voice communication.
-* **Squad Management**: Tools to manage squads, players, and roles effectively.
-* **Large-Scale Maps**: Expanding the world with military-inspired terrains.
-
-### Phase 3: Refinement & Polishing
-
-* **Bug Fixes**: Addressing community issues and bugs.
-* **Feature Enhancements**: Improvements to existing features based on player feedback.
-* **Expanding Content**: Adding more weapons, vehicles, and tactical equipment.
-
+<!-- we dont need this yet
 ## 💬 Community & Support
 
 Want to get involved or connect with other players and developers? Join our **official MC-Milsim Discord** and explore the **Wiki** to make the most of your experience:
@@ -122,6 +84,46 @@ The official **MC-Milsim Wiki** is your go-to place for:
 * FAQs, troubleshooting, and more
 
 > Be sure to check the Wiki before submitting an issue — your question might already be answered!
+-->
+
+## 🔧 Development Team
+
+* **SchlangeGoto** - Founder & Developer
+  The visionary behind MC-Milsim. SchlangeGoto conceived the idea and drives the overall direction of the project. He writes the core concepts and outlines gameplay mechanics.
+
+* **Thatsmarterguy** - Co-Founder & Developer
+  Joined early to shape the development of MC-Milsim. As a core developer, he contributes to coding the foundational systems and overall gameplay mechanics.
+
+* **Venicro** - Developer
+  Focuses on smaller features and general improvements to the mod, enhancing the overall experience.
+
+* **Milkychicken** - Developer
+  Works on additional features and game mechanics, contributing more to core gameplay systems. (He is a god dev, will make it big one day. Still says he does not know shit)
+
+
+## 📚 Roadmap
+
+The roadmap for MC-Milsim is focused on evolving the mod into a complete military simulation experience. Here are some of the key milestones:
+
+### pre Alpha: Core Features (planned for: 9.6.25)
+
+* **Teams**: Players are getting added to Teams (maybe manual Team selection)
+* **Player Classes**: Different roles with unique abilities and loadouts.
+* **Spawning**: Basic spawning at the HQ with getting the Class loadout.
+* **Capture points**: Capture points to win the Game.
+
+### Alpha: 
+
+* **Voice Communication**: Seamless integration of squad-based voice communication.
+* **Squad Management**: Tools to manage squads, players, and roles effectively.
+* **Large-Scale Maps**: Expanding the world with military-inspired terrains.
+
+### Beta: Refinement & Polishing
+
+* **Bug Fixes**: Addressing community issues and bugs.
+* **Feature Enhancements**: Improvements to existing features based on player feedback.
+* **Expanding Content**: Adding more weapons, vehicles, and tactical equipment.
+
 
 ## 📬 Reporting Issues
 
@@ -135,18 +137,26 @@ To ensure your issue is actionable, please include the following where applicabl
 * A crash report or logs, if relevant.
 * Steps to reproduce the issue (if it's a bug).
 
-> While we welcome feature requests, development is currently focused on completing core systems, performance, and compatibility. Your feedback still helps guide the future of MC-Milsim!
+> While we welcome feature requests, development is currently focused on completing core systems. Your feedback still helps guide the future of MC-Milsim!
 
-## 📜 License
+## 💻 Contributing
 
-MC-Milsim is licensed under the [MIT License](./LICENSE). See the LICENSE file for more information.
+We appreciate contributions from the community! Whether you're fixing bugs, suggesting features, or adding new content, you can help shape the future of MC-Milsim.
 
+### How to Contribute:
+
+1. **Fork the Repository**: Create a personal copy of the repository.
+2. **Create a Branch**: For each feature or bugfix, create a new branch with a clear name.
+3. **Make Changes**: Implement your changes or improvements.
+4. **Submit a Pull Request**: Push your changes and create a pull request to merge into the `main` branch.
+5. **Follow the Guidelines**: Please check our [Contribution Guidelines](./CONTRIBUTING.md) and [Code of Conduct](./CODE_OF_CONDUCT.md).
 
 ## 🏆 Acknowledgements
 
 We would like to thank the following individuals and projects for their inspiration and support:
 
 * **Squad** for being the inspiration behind MC-Milsim's core mechanics.
+* **Hell let loose** for being another inspiration for many MC-Milsim features.
 * **Minecraft** for providing the platform that makes all this possible.
 * **Forge** for providing the modding frameworks.
 
