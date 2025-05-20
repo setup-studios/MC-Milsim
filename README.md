@@ -143,13 +143,13 @@ To ensure your issue is actionable, please include the following where applicabl
 
 We appreciate contributions from the community! Whether you're fixing bugs, suggesting features, or adding new content, you can help shape the future of MC-Milsim.
 
+We recommend connection with us on Discord if you want to help with Developing, so you can get a better unterstanding what we need and whant to make.
 ### How to Contribute:
 
 1. **Fork the Repository**: Create a personal copy of the repository.
 2. **Create a Branch**: For each feature or bugfix, create a new branch with a clear name.
 3. **Make Changes**: Implement your changes or improvements.
 4. **Submit a Pull Request**: Push your changes and create a pull request to merge into the `main` branch.
-5. **Follow the Guidelines**: Please check our [Contribution Guidelines](./CONTRIBUTING.md) and [Code of Conduct](./CODE_OF_CONDUCT.md).
 
 ## 🏆 Acknowledgements
 
