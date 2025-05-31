@@ -11,9 +11,9 @@ public class Teams {
     private ArrayList<ModPlayers> playerList;
 
     public Teams(String teamName, int maxPlayers, ChatFormatting color) {
-        this.name=teamName;
-        this.maxPlayers=maxPlayers;
-        this.nameColor= color;
+        this.name = teamName;
+        this.maxPlayers = maxPlayers;
+        this.nameColor = color;
         this.playerList  = new ArrayList<>();
     }
 

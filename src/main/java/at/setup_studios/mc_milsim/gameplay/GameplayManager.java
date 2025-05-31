@@ -87,4 +87,8 @@ public class GameplayManager {
     public static ArrayList<Teams> getTeamList() {
         return teamList;
     }
+
+    public static void createTeam(String name, int maxPlayers, ChatFormatting color) {
+        teamList.add(new Teams(name, maxPlayers, color));
+    }
 }

@@ -1,8 +1,6 @@
 package at.setup_studios.mc_milsim.events;
 
-import at.setup_studios.mc_milsim.commands.GetPlayerTeamCommand;
-import at.setup_studios.mc_milsim.commands.GetTeamPlayerListCommand;
-import at.setup_studios.mc_milsim.commands.SetPlayerTeamCommand;
+import at.setup_studios.mc_milsim.commands.*;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -15,5 +13,7 @@ public class CommandEvents {
         GetPlayerTeamCommand.register(event.getDispatcher());
         GetTeamPlayerListCommand.register(event.getDispatcher());
         SetPlayerTeamCommand.register(event.getDispatcher());
+        GetTeamListCommand.register(event.getDispatcher());
+        CreateTeamCommand.register(event.getDispatcher());
     }
 }
