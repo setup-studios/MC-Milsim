@@ -22,7 +22,7 @@ jobs:
       - name: Generate JavaDoc
         run: |
           mkdir -p javadoc
-          javadoc -d javadoc -sourcepath src -subpackages at.setup_studios.mc_milsim
+          javadoc -d javadoc -sourcepath src/main/java -subpackages at.setup_studios.mc_milsim
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
