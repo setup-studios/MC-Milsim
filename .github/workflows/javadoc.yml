@@ -28,6 +28,10 @@ jobs:
           key: gradle-${{ hashFiles('**/*.gradle*', '**/gradle.lockfile') }}
           restore-keys: gradle-
 
+
+      -  name: Make gradlew executable
+         run: chmod +x ./gradlew
+
       - name: Build project and generate Javadoc
         run: ./gradlew clean javadoc
 
