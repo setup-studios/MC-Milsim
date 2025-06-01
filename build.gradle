@@ -189,16 +189,18 @@ tasks.withType(JavaCompile).configureEach {
 
 javadoc {
     options {
-        encoding = 'UTF-8'
-        charSet = 'UTF-8'
         memberLevel = JavadocMemberLevel.PROTECTED
-        use = true
-        splitIndex = true
         windowTitle = 'MC-Milsim API'
         docTitle = 'MC-Milsim – Javadoc'
         author = true // true, wenn du @author nutzt
         version = false // true, wenn du @version nutzt
         links("https://docs.oracle.com/en/java/javase/23/docs/api/") // optional
+        use = true           // wichtig für die Navigation links
+        splitIndex = true    // notwendig für klickbare Indexseiten
+        noTimestamp = true   // verhindert unnötige Unterschiede bei jedem Build
+        encoding = 'UTF-8'
+        charSet = 'UTF-8'
+        docEncoding = 'UTF-8'
     }
 }
 
