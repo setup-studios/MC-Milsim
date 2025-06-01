@@ -191,21 +191,24 @@ tasks.withType(JavaCompile).configureEach {
 // Dokka configuration
 dokkaHtml {
     outputDirectory.set(layout.buildDirectory.dir("dokka/html"))
-    
+
     dokkaSourceSets {
         main {
-            // Include all visibility levels or customize as needed
+            // Explicitly point to your Java source directory
+            sourceRoots.from("src/main/java")
+
+            // You might also need to specify the platform
+            platform.set(org.jetbrains.dokka.Platform.jvm)
+
             documentedVisibilities.set([
-                org.jetbrains.dokka.DokkaConfiguration.Visibility.PUBLIC,
-                org.jetbrains.dokka.DokkaConfiguration.Visibility.PROTECTED
+                    org.jetbrains.dokka.DokkaConfiguration.Visibility.PUBLIC,
+                    org.jetbrains.dokka.DokkaConfiguration.Visibility.PROTECTED
             ])
-            
-            // Optional: Add external documentation links
+
             externalDocumentationLink {
                 url.set(new URL("https://docs.oracle.com/en/java/javase/22/docs/api/"))
             }
-            
-            // Optional: Configure source links to GitHub
+
             sourceLink {
                 localDirectory.set(file("src/main/java"))
                 remoteUrl.set(new URL("https://github.com/setup-studios/MC-Milsim/tree/main/src/main/java"))
@@ -213,10 +216,9 @@ dokkaHtml {
             }
         }
     }
-    
-    // Optional: Customize the footer
+
     pluginsMapConfiguration.set([
-        "org.jetbrains.dokka.base.DokkaBase": """{ 
+            "org.jetbrains.dokka.base.DokkaBase": """{ 
             "footerMessage": "© 2025 MC Milsim"
         }"""
     ])
