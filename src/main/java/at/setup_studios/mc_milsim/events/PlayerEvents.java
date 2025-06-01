@@ -1,7 +1,7 @@
 package at.setup_studios.mc_milsim.events;
 
 import at.setup_studios.mc_milsim.gameplay.GameplayManager;
-import at.setup_studios.mc_milsim.gameplay.player.Teams;
+import at.setup_studios.mc_milsim.util.ModLogger;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;

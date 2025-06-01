@@ -1,6 +1,6 @@
 package at.setup_studios.mc_milsim.commands;
 
-import at.setup_studios.mc_milsim.gameplay.player.Teams;
+import at.setup_studios.mc_milsim.gameplay.player.Team;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
@@ -28,7 +28,7 @@ public class GetTeamPlayerListCommand {
                 .then(Commands.literal("teams")
                         .then(Commands.literal("players")
                                 .then(Commands.argument("team", StringArgumentType.string())
-                                        .suggests(helpFunctions.TEAM_SUGGESTIONS) // Provide suggestions from existing teams
+                                        .suggests(CommandHelper.TEAM_SUGGESTIONS) // Provide suggestions from existing teams
                                         .executes(context -> executeCommand(context))
                                 )
                         )
@@ -49,7 +49,7 @@ public class GetTeamPlayerListCommand {
         CommandSourceStack source = context.getSource();
 
         // Find team by name
-        Teams selectedTeam = helpFunctions.findTeamByName(teamName);
+        Team selectedTeam = CommandHelper.findTeamByName(teamName);
 
         // Check if team exists
         if (selectedTeam == null) {

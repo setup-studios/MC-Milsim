@@ -1,12 +1,10 @@
 package at.setup_studios.mc_milsim.commands;
 
 import at.setup_studios.mc_milsim.gameplay.GameplayManager;
-import at.setup_studios.mc_milsim.gameplay.player.Teams;
+import at.setup_studios.mc_milsim.gameplay.player.Team;
 import com.mojang.brigadier.CommandDispatcher;
-import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
-import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.network.chat.Component;
@@ -30,7 +28,7 @@ public class DeleteTeamCommand {
                 .then(Commands.literal("teams")
                         .then(Commands.literal("delete")
                                 .then(Commands.argument("teamname", StringArgumentType.string())
-                                        .suggests(helpFunctions.TEAM_SUGGESTIONS) // Provide suggestions from existing teams
+                                        .suggests(CommandHelper.TEAM_SUGGESTIONS) // Provide suggestions from existing teams
                                         .executes(context -> executeCommand(context))
                                 )
                         )
@@ -52,7 +50,7 @@ public class DeleteTeamCommand {
         String teamName = StringArgumentType.getString(context, "teamname");
         
         // Try to find the team by name
-        Teams teamToDelete = helpFunctions.findTeamByName(teamName);
+        Team teamToDelete = CommandHelper.findTeamByName(teamName);
 
         // Check if team exists
         if (teamToDelete == null) {
@@ -60,19 +58,15 @@ public class DeleteTeamCommand {
             return 0;
         }
 
-        try {
-            // Attempt to delete the team
-            GameplayManager.deleteTeam(teamToDelete);
+
+        // Deleting the team
+        GameplayManager.deleteTeam(teamToDelete);
             
-            // Send success message with team name in team's color
-            source.sendSuccess(() -> Component.literal("Team: ")
-                    .append(Component.literal(teamToDelete.getName()).withStyle(teamToDelete.getColor()))
-                    .append(Component.literal(" has been deleted")), true);
-            return 1;
-        } catch (Exception e) {
-            // Handle any errors during team deletion
-            source.sendFailure(Component.literal("Failed to delete team: " + e.getMessage()));
-            return 0;
-        }
+        // Send success message with team name in team's color
+        source.sendSuccess(() -> Component.literal("Team: ")
+                .append(Component.literal(teamToDelete.getName()).withStyle(teamToDelete.getColor()))
+                .append(Component.literal(" has been deleted")), true);
+        return 1;
+
     }
 }

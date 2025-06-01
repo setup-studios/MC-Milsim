@@ -1,13 +1,11 @@
 package at.setup_studios.mc_milsim.commands;
 
 import at.setup_studios.mc_milsim.gameplay.GameplayManager;
-import at.setup_studios.mc_milsim.gameplay.player.ModPlayers;
-import at.setup_studios.mc_milsim.gameplay.player.Teams;
+import at.setup_studios.mc_milsim.gameplay.player.ModPlayer;
+import at.setup_studios.mc_milsim.gameplay.player.Team;
 import com.mojang.brigadier.CommandDispatcher;
-import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.EntityArgument;
@@ -54,7 +52,7 @@ public class RemovePlayerTeamCommand {
         ServerPlayer player = EntityArgument.getPlayer(context, "player");
         
         // Get player's mod data
-        ModPlayers modPlayer = GameplayManager.getPlayerObject(player);
+        ModPlayer modPlayer = GameplayManager.getPlayerObject(player);
 
         // Check if player exists in the mod system
         if (modPlayer == null) {
@@ -63,7 +61,7 @@ public class RemovePlayerTeamCommand {
         }
 
         // Store old team for message and remove player from team
-        Teams oldTeam = modPlayer.getTeam();
+        Team oldTeam = modPlayer.getTeam();
         GameplayManager.removePlayerFromTeam(modPlayer);
 
         // Send success message with old team name in team's color

@@ -1,7 +1,6 @@
 package at.setup_studios.mc_milsim.commands;
 
-import at.setup_studios.mc_milsim.gameplay.GameplayManager;
-import at.setup_studios.mc_milsim.gameplay.player.Teams;
+import at.setup_studios.mc_milsim.gameplay.player.Team;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
@@ -13,7 +12,7 @@ import net.minecraft.network.chat.Component;
  * Command handler for displaying team information.
  * Provides detailed information about a specific team including its properties and members.
  */
-public class TeamInfoCommand {
+public class GetTeamInfoCommand {
 
     /**
      * Registers the team info command with the dispatcher.
@@ -28,7 +27,7 @@ public class TeamInfoCommand {
                 .then(Commands.literal("teams")
                         .then(Commands.literal("info")
                                 .then(Commands.argument("teamname", StringArgumentType.string())
-                                        .suggests(helpFunctions.TEAM_SUGGESTIONS) // Add team name suggestions
+                                        .suggests(CommandHelper.TEAM_SUGGESTIONS) // Add team name suggestions
                                         .executes(context -> executeCommand(context))
                                 )
                         )
@@ -49,7 +48,7 @@ public class TeamInfoCommand {
         String teamName = StringArgumentType.getString(context, "teamname");
         
         // Find team by name
-        Teams teamForInfo = helpFunctions.findTeamByName(teamName);
+        Team teamForInfo = CommandHelper.findTeamByName(teamName);
 
         // Validate team existence
         if (teamForInfo == null) {
@@ -57,15 +56,9 @@ public class TeamInfoCommand {
             return 0;
         }
 
-        // Try to display team information
-        try {
-            // Use team's toString method to get formatted info
-            source.sendSuccess(() -> Component.literal(teamForInfo.toString()), false);
-            return 1; // Success
-        } catch (Exception e) {
-            // Handle any errors during info retrieval
-            source.sendFailure(Component.literal("Failed to get info for team: " + e.getMessage()));
-            return 0; // Failure
-        }
+        // Use team's toString method to get formatted info
+        source.sendSuccess(() -> Component.literal(teamForInfo.toString()), false);
+        return 1; // Success
+
     }
 }

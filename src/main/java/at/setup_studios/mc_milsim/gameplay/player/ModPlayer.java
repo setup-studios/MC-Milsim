@@ -11,12 +11,12 @@ import java.util.UUID;
  * This class manages player information including their Minecraft player instance,
  * name, UUID, and team assignment.
  */
-public class ModPlayers {
+public class ModPlayer {
     // Core player data fields
     private Player player;    // Minecraft player instance
     private String name;      // Player's display name
-    private UUID uuid;        // Unique identifier for the player
-    private Teams team;       // Player's assigned team
+    private final UUID uuid;        // Unique identifier for the player
+    private Team team;       // Player's assigned team
 
     /**
      * Constructs a new ModPlayers instance with the specified parameters.
@@ -25,9 +25,10 @@ public class ModPlayers {
      * @param name   The player's display name
      * @param player The Minecraft player instance
      */
-    public ModPlayers(UUID uuid, String name, Player player) {
+    public ModPlayer(UUID uuid, String name, Player player) {
         if (uuid == null || name == null || player == null) {
             ModLogger.error("Attempted to create ModPlayers with null values - UUID: " + uuid + ", name: " + name + ", player: " + player);
+            this.uuid = null;
             return;
         }
         this.name = name;
@@ -59,7 +60,7 @@ public class ModPlayers {
      *
      * @param team The team to assign the player to
      */
-    public void setTeam(Teams team) {
+    public void setTeam(Team team) {
         this.team = team;
     }
 
@@ -86,7 +87,7 @@ public class ModPlayers {
      *
      * @return The team the player is assigned to, or null if not assigned to any team
      */
-    public Teams getTeam() {
+    public Team getTeam() {
         return team;
     }
 

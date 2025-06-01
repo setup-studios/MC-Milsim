@@ -1,8 +1,8 @@
 package at.setup_studios.mc_milsim.commands;
 
 import at.setup_studios.mc_milsim.gameplay.GameplayManager;
-import at.setup_studios.mc_milsim.gameplay.player.ModPlayers;
-import at.setup_studios.mc_milsim.gameplay.player.Teams;
+import at.setup_studios.mc_milsim.gameplay.player.ModPlayer;
+import at.setup_studios.mc_milsim.gameplay.player.Team;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
@@ -35,7 +35,7 @@ public class SetPlayerTeamCommand {
                         .then(Commands.literal("add")
                                 .then(Commands.argument("player", EntityArgument.player())
                                         .then(Commands.argument("team", StringArgumentType.string())
-                                                .suggests(helpFunctions.TEAM_SUGGESTIONS) // Add team name suggestions
+                                                .suggests(CommandHelper.TEAM_SUGGESTIONS) // Add team name suggestions
                                                 .executes(context -> executeCommand(context))
                                         )
                                 )
@@ -57,10 +57,10 @@ public class SetPlayerTeamCommand {
         String teamName = StringArgumentType.getString(context, "team");
         CommandSourceStack source = context.getSource();
         ServerPlayer player = EntityArgument.getPlayer(context, "player");
-        ModPlayers modPlayer = GameplayManager.getPlayerObject(player);
+        ModPlayer modPlayer = GameplayManager.getPlayerObject(player);
 
         // Find team by name
-        Teams selectedTeam = helpFunctions.findTeamByName(teamName);
+        Team selectedTeam = CommandHelper.findTeamByName(teamName);
 
         // Validate team existence
         if (selectedTeam == null) {

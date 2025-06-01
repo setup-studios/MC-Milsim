@@ -1,7 +1,7 @@
 package at.setup_studios.mc_milsim.gameplay;
 
-import at.setup_studios.mc_milsim.gameplay.player.ModPlayers;
-import at.setup_studios.mc_milsim.gameplay.player.Teams;
+import at.setup_studios.mc_milsim.gameplay.player.ModPlayer;
+import at.setup_studios.mc_milsim.gameplay.player.Team;
 import at.setup_studios.mc_milsim.util.ModLogger;
 import net.minecraft.ChatFormatting;
 import net.minecraft.server.level.ServerPlayer;
@@ -17,15 +17,15 @@ import java.util.UUID;
  */
 public class GameplayManager {
     /** List of all teams in the game */
-    private static final ArrayList<Teams> teamList = new ArrayList<>();
+    private static final ArrayList<Team> teamList = new ArrayList<>();
 
     /** Map of player UUIDs to their corresponding ModPlayers objects */
-    private static final HashMap<UUID, ModPlayers> playerList = new HashMap<>();
+    private static final HashMap<UUID, ModPlayer> playerList = new HashMap<>();
 
     /* Static initializer block that creates default Red and Blue teams with 5 player capacity each */
     static {
-        teamList.add(new Teams("Red", 5, ChatFormatting.RED));
-        teamList.add(new Teams("Blue", 5, ChatFormatting.BLUE));
+        teamList.add(new Team("Red", 5, ChatFormatting.RED));
+        teamList.add(new Team("Blue", 5, ChatFormatting.BLUE));
     }
     //Privat constructor since this is a utility class
     private GameplayManager() {
@@ -37,13 +37,13 @@ public class GameplayManager {
      * @param player The ServerPlayer to get the ModPlayers object for
      * @return The associated ModPlayers object, or null if not found
      */
-    public static ModPlayers getPlayerObject (ServerPlayer player) {
+    public static ModPlayer getPlayerObject (ServerPlayer player) {
         if (player == null) {
             ModLogger.error("Cannot get player object: player is null");
             return null;
         }
 
-        ModPlayers modPlayer = playerList.get(player.getUUID());
+        ModPlayer modPlayer = playerList.get(player.getUUID());
         if (modPlayer == null) {
             ModLogger.error("Player object not found: " + player.getName().getString());
         }
@@ -57,11 +57,11 @@ public class GameplayManager {
     public static void onPlayerJoin (ServerPlayer player) {
         // Create new ModPlayer and add to player list
         UUID uuid=player.getUUID();
-        ModPlayers modPlayer = new ModPlayers(uuid, player.getName().getString(), player);
+        ModPlayer modPlayer = new ModPlayer(uuid, player.getName().getString(), player);
         playerList.put(uuid, modPlayer);
 
         // Assign player to the team with the lowest player count
-        Teams team = teamWithLowestCount(teamList);
+        Team team = teamWithLowestCount(teamList);
         team.addPlayer(modPlayer);
     }
 
@@ -71,14 +71,14 @@ public class GameplayManager {
      */
     public static void onPlayerLeave (ServerPlayer player) {
         UUID uuid=player.getUUID();
-        ModPlayers modPlayer = playerList.get(uuid);
+        ModPlayer modPlayer = playerList.get(uuid);
         if (modPlayer == null) {
             ModLogger.warn("Player not found in playerList: " + player.getName().getString());
             return;
         }
 
         // Remove player from their team if they're on one
-        Teams team = modPlayer.getTeam();
+        Team team = modPlayer.getTeam();
         if (team != null) team.removePlayer(modPlayer);
 
         // Remove player from the master list
@@ -90,15 +90,15 @@ public class GameplayManager {
      * @param teamList List of teams to search through
      * @return The team with the lowest player count, or null if the list is empty
      */
-    public static Teams teamWithLowestCount(ArrayList<Teams> teamList) {
+    public static Team teamWithLowestCount(ArrayList<Team> teamList) {
         if (teamList == null || teamList.isEmpty()) {
             ModLogger.warn("teamList is null or empty\n");
             return null;
         }
 
         // Find team with lowest player count through iteration
-        Teams teamWithLowestCount = teamList.get(0);
-        for (Teams team: teamList) {
+        Team teamWithLowestCount = teamList.get(0);
+        for (Team team: teamList) {
             if (team.getPlayers().size()<teamWithLowestCount.getPlayers().size()) {
                 teamWithLowestCount = team;
             }
@@ -111,7 +111,7 @@ public class GameplayManager {
      * @param player The player to add
      * @param newTeam The team to add the player to
      */
-    public static void addPlayerToTeam(ModPlayers player, Teams newTeam) {
+    public static void addPlayerToTeam(ModPlayer player, Team newTeam) {
         if (player == null) {
             ModLogger.error("Cannot add player to team: player is null");
             return;
@@ -122,7 +122,7 @@ public class GameplayManager {
         }
 
         // Remove from old team if necessary
-        Teams oldPlayerTeam = player.getTeam();
+        Team oldPlayerTeam = player.getTeam();
         if (oldPlayerTeam != null) oldPlayerTeam.removePlayer(player);
 
         // Add to new team
@@ -134,13 +134,13 @@ public class GameplayManager {
      * Removes a player from their current team.
      * @param player The player to remove from their team
      */
-    public static void removePlayerFromTeam(ModPlayers player) {
+    public static void removePlayerFromTeam(ModPlayer player) {
         if (player == null) {
             ModLogger.error("Cannot remove player from team: player is null");
             return;
         }
 
-        Teams team = player.getTeam();
+        Team team = player.getTeam();
         if (team == null) {
             ModLogger.error("Player is not on a Team");
             return;
@@ -153,7 +153,7 @@ public class GameplayManager {
      * Gets the list of all teams in the game.
      * @return ArrayList containing all teams
      */
-    public static ArrayList<Teams> getTeamList() {
+    public static ArrayList<Team> getTeamList() {
         return teamList;
     }
 
@@ -179,31 +179,31 @@ public class GameplayManager {
         }
 
         // Check for duplicate team names
-        for (Teams existingTeam : teamList) {
+        for (Team existingTeam : teamList) {
             if (existingTeam.getName().equalsIgnoreCase(name)) {
                 ModLogger.error("Cannot create team: team name already exists");
                 return;
             }
         }
 
-        teamList.add(new Teams(name, maxPlayers, color));
+        teamList.add(new Team(name, maxPlayers, color));
     }
 
     /**
      * Deletes a team and properly handles removal of all its players.
      * @param team The team to delete
      */
-    public static void deleteTeam(Teams team) {
+    public static void deleteTeam(Team team) {
         if (team == null) {
             ModLogger.error("Cannot delete team: team is null\n");
             return;
         }
 
         // Create a copy of the players list to avoid concurrent modification
-        ArrayList<ModPlayers> playersToRemove = new ArrayList<>(team.getPlayers());
+        ArrayList<ModPlayer> playersToRemove = new ArrayList<>(team.getPlayers());
 
         // Remove each player from the team
-        for (ModPlayers player : playersToRemove) {
+        for (ModPlayer player : playersToRemove) {
             removePlayerFromTeam(player);
         }
 

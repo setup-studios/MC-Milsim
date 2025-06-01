@@ -1,14 +1,11 @@
 package at.setup_studios.mc_milsim.commands;
 
 import at.setup_studios.mc_milsim.gameplay.GameplayManager;
-import at.setup_studios.mc_milsim.gameplay.player.Teams;
+import at.setup_studios.mc_milsim.gameplay.player.Team;
 import com.mojang.brigadier.CommandDispatcher;
-import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
-import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
-import net.minecraft.commands.arguments.EntityArgument;
 import net.minecraft.network.chat.Component;
 
 /**
@@ -49,7 +46,7 @@ public class GetTeamListCommand {
         source.sendSuccess(() -> Component.literal("Teams:"), false);
         
         // Iterate through all teams and display them with their respective colors
-        for (Teams team : GameplayManager.getTeamList()) {
+        for (Team team : GameplayManager.getTeamList()) {
             source.sendSuccess(() -> Component.literal(team.getName()).withStyle(team.getColor()), false);
         }
 

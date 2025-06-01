@@ -30,7 +30,7 @@ public class CreateTeamCommand {
                                 .then(Commands.argument("teamname", StringArgumentType.string())
                                         .then(Commands.argument("maxplayers", IntegerArgumentType.integer())
                                                 .then(Commands.argument("color", StringArgumentType.string())
-                                                        .suggests(helpFunctions.COLOR_SUGGESTIONS)
+                                                        .suggests(CommandHelper.COLOR_SUGGESTIONS)
                                                         .executes(context -> executeCommand(context))
                                                 )
                                         )
@@ -51,15 +51,23 @@ public class CreateTeamCommand {
         CommandSourceStack source = context.getSource();
         
         // Validate color argument
-        ChatFormatting color = helpFunctions.getChatFormatting(context, "color");
+        ChatFormatting color = CommandHelper.getChatFormatting(context, "color");
         if (color == null || !color.isColor()) {
             source.sendFailure(Component.literal("Color is not valid"));
-            return -1;
+            return 0;
         }
 
         // Extract command arguments
         int maxPlayers = IntegerArgumentType.getInteger(context,"maxplayers");
+        if (maxPlayers < 1) {
+            source.sendFailure(Component.literal("Max Players is not valid"));
+            return 0;
+        }
         String teamName = StringArgumentType.getString(context, "teamname");
+        if (teamName == null || teamName.isBlank()) {
+            source.sendFailure(Component.literal("Team name is not valid"));
+            return 0;
+        }
         
         // Create the team
         GameplayManager.createTeam(teamName, maxPlayers, color);

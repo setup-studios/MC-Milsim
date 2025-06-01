@@ -16,7 +16,7 @@ public class CommandEvents {
         GetTeamListCommand.register(event.getDispatcher());
         CreateTeamCommand.register(event.getDispatcher());
         DeleteTeamCommand.register(event.getDispatcher());
-        TeamInfoCommand.register(event.getDispatcher());
+        GetTeamInfoCommand.register(event.getDispatcher());
         RemovePlayerTeamCommand.register(event.getDispatcher());
     }
 }

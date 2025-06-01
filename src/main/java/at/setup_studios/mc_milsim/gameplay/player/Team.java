@@ -8,12 +8,12 @@ import java.util.ArrayList;
  * Represents a team in the game with players management functionality.
  * Each team has a name, maximum player capacity, and a specific color.
  */
-public class Teams {
+public class Team {
     // Team properties
     private final String name;
     private final int maxPlayers;
     private final ChatFormatting nameColor;
-    private final ArrayList<ModPlayers> playerList;
+    private final ArrayList<ModPlayer> playerList;
 
     /**
      * Constructs a new team with specified parameters.
@@ -22,7 +22,7 @@ public class Teams {
      * @param maxPlayers The maximum number of players allowed in the team
      * @param color The color formatting for the team's name
      */
-    public Teams(String teamName, int maxPlayers, ChatFormatting color) {
+    public Team(String teamName, int maxPlayers, ChatFormatting color) {
         if (teamName == null || teamName.trim().isEmpty()) {
             ModLogger.error("Team name cannot be null or empty");
         }
@@ -46,7 +46,7 @@ public class Teams {
      *
      * @param player The player to be added to the team
      */
-    public void addPlayer(ModPlayers player) {
+    public void addPlayer(ModPlayer player) {
         if (player == null) {
             ModLogger.error("Cannot add null player to team: " + this.name);
         }
@@ -67,7 +67,7 @@ public class Teams {
      *
      * @param player The player to be removed from the team
      */
-    public void removePlayer(ModPlayers player) {
+    public void removePlayer(ModPlayer player) {
         if (player == null) {
             ModLogger.error("Cannot remove null player from team: " + this.name);
         }
@@ -85,7 +85,7 @@ public class Teams {
      *
      * @return ArrayList containing all players in the team
      */
-    public ArrayList<ModPlayers> getPlayers() {
+    public ArrayList<ModPlayer> getPlayers() {
         if (playerList.isEmpty()) {
             ModLogger.debug("Returning empty player list for team: " + this.name);
         }
@@ -104,7 +104,7 @@ public class Teams {
 
         ArrayList<String> players = new ArrayList<>();
         // Convert each player object to player name
-        for (ModPlayers player: this.playerList) {
+        for (ModPlayer player: this.playerList) {
             players.add(player.getName());
         }
         return players;
