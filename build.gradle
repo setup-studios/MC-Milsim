@@ -208,7 +208,7 @@ dokkaHtml {
             // Optional: Configure source links to GitHub
             sourceLink {
                 localDirectory.set(file("src/main/java"))
-                remoteUrl.set(new URL("https://github.com/yourusername/yourrepo/tree/main/src/main/java"))
+                remoteUrl.set(new URL("https://github.com/setup-studios/MC-Milsim/tree/main/src/main/java"))
                 remoteLineSuffix.set("#L")
             }
         }
@@ -217,28 +217,33 @@ dokkaHtml {
     // Optional: Customize the footer
     pluginsMapConfiguration.set([
         "org.jetbrains.dokka.base.DokkaBase": """{ 
-            "footerMessage": "© 2025 MC-Milsim"
+            "footerMessage": "© 2025 MC Milsim"
         }"""
     ])
 }
 
-// Enhanced Javadoc configuration
+// Enhanced Javadoc configuration with modern sidebar
 javadoc {
     options.encoding = 'UTF-8'
     options.charSet = 'UTF-8'
     options.addStringOption('Xdoclint:none', '-quiet')
-    options.windowTitle = "MC-Milsim Docs"
-    options.docTitle = "MC-Milsim Docs"
-    options.header = "<b>MC-Milsim</b>"
-    options.bottom = "Copyright © 2025 MC-Milsim. All rights reserved."
+    options.windowTitle = "MC Milsim Docs"
+    options.docTitle = "MC Milsim Docs"
+    options.header = "<b>MC Milsim</b>"
+    options.bottom = "Copyright © 2025 Setup Studios. All rights reserved."
+    
+    // Enable modern HTML5 with sidebar navigation
+    options.addBooleanOption('html5', true)
+    options.addStringOption('Xdoclint:none', '-quiet')
     
     // Add links to external documentation
     options.links(
         'https://docs.oracle.com/en/java/javase/22/docs/api/'
     )
     
-    // Optional: Custom stylesheet
-    // options.stylesheetFile = file("${projectDir}/src/javadoc/stylesheet.css")
+    // Add search functionality
+    options.addBooleanOption('use', true)
+    options.addBooleanOption('splitindex', true)
     
     destinationDir = file("${buildDir}/docs/javadoc")
 }
@@ -256,11 +261,11 @@ task generateAllDocs {
 task combineDocs(type: Copy) {
     dependsOn javadoc, dokkaHtml
     
-    // Copy Dokka docs to root
+    // Copy Dokka docs to dokka subdirectory  
     from dokkaHtml.outputDirectory
-    into "${buildDir}/docs/combined"
+    into "${buildDir}/docs/combined/dokka"
     
-    // Copy Javadoc to subdirectory
+    // Copy Javadoc to javadoc subdirectory
     from javadoc.destinationDir
     into "${buildDir}/docs/combined/javadoc"
     
@@ -270,45 +275,104 @@ task combineDocs(type: Copy) {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Your Project Documentation</title>
+    <title>MC Milsim Documentation</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 40px; }
-        .container { max-width: 800px; margin: 0 auto; }
-        .doc-option { 
-            border: 1px solid #ddd; 
-            padding: 20px; 
-            margin: 20px 0; 
-            border-radius: 8px;
-            background: #f9f9f9;
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+            margin: 0; 
+            padding: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
         }
-        .doc-option h3 { margin-top: 0; color: #333; }
+        .container { 
+            max-width: 900px; 
+            margin: 0 auto; 
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        h1 { 
+            color: #2c3e50; 
+            text-align: center; 
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 40px;
+            font-size: 1.1em;
+        }
+        .doc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        .doc-option { 
+            border: 2px solid #ecf0f1;
+            padding: 30px; 
+            border-radius: 12px;
+            background: #fafbfc;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        .doc-option:hover { 
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            border-color: #3498db;
+        }
+        .doc-option h3 { 
+            margin-top: 0; 
+            color: #2c3e50;
+            font-size: 1.3em;
+        }
+        .doc-option p {
+            color: #7f8c8d;
+            line-height: 1.6;
+            margin: 15px 0 25px;
+        }
         .doc-option a { 
             display: inline-block;
-            padding: 10px 20px;
-            background: #007cba;
+            padding: 12px 25px;
+            background: linear-gradient(45deg, #3498db, #2980b9);
             color: white;
             text-decoration: none;
-            border-radius: 4px;
-            margin-top: 10px;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all 0.3s ease;
         }
-        .doc-option a:hover { background: #005c8a; }
+        .doc-option a:hover { 
+            background: linear-gradient(45deg, #2980b9, #1f4788);
+            transform: scale(1.05);
+        }
+        .dokka-link { background: linear-gradient(45deg, #e74c3c, #c0392b) !important; }
+        .dokka-link:hover { background: linear-gradient(45deg, #c0392b, #a93226) !important; }
+        
+        @media (max-width: 768px) {
+            .doc-grid { grid-template-columns: 1fr; }
+            .container { padding: 20px; margin: 20px; }
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Your Project Documentation</h1>
-        <p>Choose your preferred documentation format:</p>
+        <h1>🎮 MC Milsim Documentation</h1>
+        <p class="subtitle">Choose your preferred documentation format</p>
         
-        <div class="doc-option">
-            <h3>🎨 Modern Documentation (Dokka)</h3>
-            <p>Beautiful, modern interface with enhanced navigation and styling. Best for browsing and exploring the API.</p>
-            <a href="index.html">View Dokka Documentation</a>
-        </div>
-        
-        <div class="doc-option">
-            <h3>📚 Standard Javadoc</h3>
-            <p>Traditional Javadoc format. Familiar interface for Java developers, great for quick reference.</p>
-            <a href="javadoc/index.html">View Javadoc Documentation</a>
+        <div class="doc-grid">
+            <div class="doc-option">
+                <h3>🎨 Modern Documentation</h3>
+                <p>Beautiful, modern interface with enhanced navigation and styling. Best for browsing and exploring the API.</p>
+                <a href="dokka/index.html" class="dokka-link">View Dokka Documentation</a>
+            </div>
+            
+            <div class="doc-option">
+                <h3>📚 Standard Javadoc</h3>
+                <p>Traditional Javadoc format with modern sidebar. Familiar interface for Java developers, great for quick reference.</p>
+                <a href="javadoc/index.html">View Javadoc Documentation</a>
+            </div>
         </div>
     </div>
 </body>
@@ -317,7 +381,8 @@ task combineDocs(type: Copy) {
         
         new File("${buildDir}/docs/combined/index.html").text = indexContent
         println "Combined documentation site created at: ${buildDir}/docs/combined"
+        println "Dokka docs: ${buildDir}/docs/combined/dokka"
+        println "Javadoc docs: ${buildDir}/docs/combined/javadoc"
     }
 }
-
 
