@@ -49,7 +49,6 @@ public class Mc_milsim {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         ModCreativeModeTabs.register(modEventBus);
-
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
         ModFluidTypes.register(modEventBus);
@@ -67,15 +66,7 @@ public class Mc_milsim {
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-        // Some common setup code
-        LOGGER.info("HELLO FROM COMMON SETUP");
-        LOGGER.info("DIRT BLOCK >> {}", ForgeRegistries.BLOCKS.getKey(Blocks.DIRT));
 
-        if (Config.logDirtBlock) LOGGER.info("DIRT BLOCK >> {}", ForgeRegistries.BLOCKS.getKey(Blocks.DIRT));
-
-        LOGGER.info(Config.magicNumberIntroduction + Config.magicNumber);
-
-        Config.items.forEach((item) -> LOGGER.info("ITEM >> {}", item.toString()));
     }
 
     // Add the example block item to the building blocks tab
@@ -83,14 +74,9 @@ public class Mc_milsim {
         if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) event.accept(ModItems.BEISPIEL);
     }
 
-    // You can use SubscribeEvent and let the Event Bus discover methods to call
-    @SubscribeEvent
-    public void onServerStarting(ServerStartingEvent event) {
-
-    }
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
-    @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+ /*   @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents {
 
         @SubscribeEvent
@@ -104,5 +90,5 @@ public class Mc_milsim {
 //            ItemBlockRenderTypes.setRenderLayer(ModFluids.SOURCE_MILK_FLUID.get(), RenderType.translucent());
 //            ItemBlockRenderTypes.setRenderLayer(ModFluids.FLOWING_MILK_FLUID.get(), RenderType.translucent());
         }
-    }
+    } */
 }
