@@ -3,8 +3,8 @@ plugins {
     id 'idea'
     id 'net.minecraftforge.gradle' version '[6.0.16,6.2)'
     id 'org.parchmentmc.librarian.forgegradle' version '1.+'
-    id 'org.jetbrains.dokka' version '2.0.0'
     id 'java'
+    id 'org.jetbrains.dokka' version '1.9.10'
 }
 
 group = mod_group_id
@@ -188,24 +188,6 @@ tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
 }
 
-javadoc {
-    options {
-        memberLevel = JavadocMemberLevel.PROTECTED
-        windowTitle = 'MC-Milsim API'
-        docTitle = 'MC-Milsim – Javadoc'
-        author = true // true, wenn du @author nutzt
-        version = false // true, wenn du @version nutzt
-        links("https://docs.oracle.com/en/java/javase/23/docs/api/") // optional
-        use = true           // wichtig für die Navigation links
-        splitIndex = true    // notwendig für klickbare Indexseiten
-        noTimestamp = true   // verhindert unnötige Unterschiede bei jedem Build
-        encoding = 'UTF-8'
-        charSet = 'UTF-8'
-        docEncoding = 'UTF-8'
-    }
-}
-
-
 // Dokka configuration
 dokkaHtml {
     outputDirectory.set(layout.buildDirectory.dir("dokka/html"))
@@ -226,7 +208,7 @@ dokkaHtml {
             // Optional: Configure source links to GitHub
             sourceLink {
                 localDirectory.set(file("src/main/java"))
-                remoteUrl.set(new URL("https://github.com/setup-studios/MC-Milsim/tree/main/src/main/java"))
+                remoteUrl.set(new URL("https://github.com/yourusername/yourrepo/tree/main/src/main/java"))
                 remoteLineSuffix.set("#L")
             }
         }
@@ -240,13 +222,102 @@ dokkaHtml {
     ])
 }
 
-// Task to make it easier to generate docs locally
-task generateDocs {
-    dependsOn dokkaHtml
+// Enhanced Javadoc configuration
+javadoc {
+    options.encoding = 'UTF-8'
+    options.charSet = 'UTF-8'
+    options.addStringOption('Xdoclint:none', '-quiet')
+    options.windowTitle = "Your Project API Documentation"
+    options.docTitle = "Your Project API Documentation"
+    options.header = "<b>Your Project</b>"
+    options.bottom = "Copyright © 2025 Your Name. All rights reserved."
+    
+    // Add links to external documentation
+    options.links(
+        'https://docs.oracle.com/en/java/javase/17/docs/api/'
+    )
+    
+    // Optional: Custom stylesheet
+    // options.stylesheetFile = file("${projectDir}/src/javadoc/stylesheet.css")
+    
+    destinationDir = file("${buildDir}/docs/javadoc")
+}
+
+// Task to generate both documentation types
+task generateAllDocs {
+    dependsOn javadoc, dokkaHtml
     doLast {
-        println "Documentation generated at: ${dokkaHtml.outputDirectory.get()}"
+        println "Standard Javadoc generated at: ${javadoc.destinationDir}"
+        println "Dokka documentation generated at: ${dokkaHtml.outputDirectory.get()}"
     }
 }
 
+// Task to create a combined documentation site
+task combineDocs(type: Copy) {
+    dependsOn javadoc, dokkaHtml
+    
+    // Copy Dokka docs to root
+    from dokkaHtml.outputDirectory
+    into "${buildDir}/docs/combined"
+    
+    // Copy Javadoc to subdirectory
+    from javadoc.destinationDir
+    into "${buildDir}/docs/combined/javadoc"
+    
+    doLast {
+        // Create an index.html that provides navigation between both
+        def indexContent = """
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Project Documentation</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        .doc-option { 
+            border: 1px solid #ddd; 
+            padding: 20px; 
+            margin: 20px 0; 
+            border-radius: 8px;
+            background: #f9f9f9;
+        }
+        .doc-option h3 { margin-top: 0; color: #333; }
+        .doc-option a { 
+            display: inline-block;
+            padding: 10px 20px;
+            background: #007cba;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+        .doc-option a:hover { background: #005c8a; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Your Project Documentation</h1>
+        <p>Choose your preferred documentation format:</p>
+        
+        <div class="doc-option">
+            <h3>🎨 Modern Documentation (Dokka)</h3>
+            <p>Beautiful, modern interface with enhanced navigation and styling. Best for browsing and exploring the API.</p>
+            <a href="index.html">View Dokka Documentation</a>
+        </div>
+        
+        <div class="doc-option">
+            <h3>📚 Standard Javadoc</h3>
+            <p>Traditional Javadoc format. Familiar interface for Java developers, great for quick reference.</p>
+            <a href="javadoc/index.html">View Javadoc Documentation</a>
+        </div>
+    </div>
+</body>
+</html>
+        """
+        
+        new File("${buildDir}/docs/combined/index.html").text = indexContent
+        println "Combined documentation site created at: ${buildDir}/docs/combined"
+    }
+}
 
 
