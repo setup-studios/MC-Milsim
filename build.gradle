@@ -3,9 +3,8 @@ plugins {
     id 'idea'
     id 'net.minecraftforge.gradle' version '[6.0.16,6.2)'
     id 'org.parchmentmc.librarian.forgegradle' version '1.+'
-    id("org.jetbrains.dokka") version "1.9.20" // or latest
+    id("org.jetbrains.dokka") version "2.0.0"
 }
-
 
 group = mod_group_id
 version = mod_version
