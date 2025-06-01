@@ -261,6 +261,7 @@ task generateAllDocs {
 
 // Task to create a combined documentation site
 task combineDocs(type: Copy) {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     dependsOn javadoc, dokkaHtml
     
     // Copy Dokka docs to dokka subdirectory  
