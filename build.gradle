@@ -173,9 +173,9 @@ tasks.named('jar', Jar).configure {
     manifest {
         attributes(["Specification-Title"     : mod_id,
                     "Specification-Vendor"    : mod_authors,
-                    "Specification-Version"   : "1", // We are version 1 of ourselves
-                    "Implementation-Title"    : project.name,
-                    "Implementation-Version"  : project.jar.archiveVersion,
+                    "Specification-Version"   : "1",
+                    "Implementation-Title"    : mod_name,
+                    "Implementation-Version"  : mod_version,
                     "Implementation-Vendor"   : mod_authors,
                     "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")])
     }
@@ -202,7 +202,7 @@ dokkaHtml {
             
             // Optional: Add external documentation links
             externalDocumentationLink {
-                url.set(new URL("https://docs.oracle.com/en/java/javase/11/docs/api/"))
+                url.set(new URL("https://docs.oracle.com/en/java/javase/22/docs/api/"))
             }
             
             // Optional: Configure source links to GitHub
@@ -217,7 +217,7 @@ dokkaHtml {
     // Optional: Customize the footer
     pluginsMapConfiguration.set([
         "org.jetbrains.dokka.base.DokkaBase": """{ 
-            "footerMessage": "© 2025 Your Project Name"
+            "footerMessage": "© 2025 MC-Milsim"
         }"""
     ])
 }
@@ -227,14 +227,14 @@ javadoc {
     options.encoding = 'UTF-8'
     options.charSet = 'UTF-8'
     options.addStringOption('Xdoclint:none', '-quiet')
-    options.windowTitle = "Your Project API Documentation"
-    options.docTitle = "Your Project API Documentation"
-    options.header = "<b>Your Project</b>"
-    options.bottom = "Copyright © 2025 Your Name. All rights reserved."
+    options.windowTitle = "MC-Milsim Docs"
+    options.docTitle = "MC-Milsim Docs"
+    options.header = "<b>MC-Milsim</b>"
+    options.bottom = "Copyright © 2025 MC-Milsim. All rights reserved."
     
     // Add links to external documentation
     options.links(
-        'https://docs.oracle.com/en/java/javase/17/docs/api/'
+        'https://docs.oracle.com/en/java/javase/22/docs/api/'
     )
     
     // Optional: Custom stylesheet
