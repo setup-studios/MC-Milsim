@@ -3,7 +3,8 @@ plugins {
     id 'idea'
     id 'net.minecraftforge.gradle' version '[6.0.16,6.2)'
     id 'org.parchmentmc.librarian.forgegradle' version '1.+'
-    id("org.jetbrains.dokka") version "2.0.0"
+    id 'org.jetbrains.dokka' version '2.0.0'
+    id 'java'
 }
 
 group = mod_group_id
@@ -201,6 +202,49 @@ javadoc {
         encoding = 'UTF-8'
         charSet = 'UTF-8'
         docEncoding = 'UTF-8'
+    }
+}
+
+
+// Dokka configuration
+dokkaHtml {
+    outputDirectory.set(layout.buildDirectory.dir("dokka/html"))
+    
+    dokkaSourceSets {
+        main {
+            // Include all visibility levels or customize as needed
+            documentedVisibilities.set([
+                org.jetbrains.dokka.DokkaConfiguration.Visibility.PUBLIC,
+                org.jetbrains.dokka.DokkaConfiguration.Visibility.PROTECTED
+            ])
+            
+            // Optional: Add external documentation links
+            externalDocumentationLink {
+                url.set(new URL("https://docs.oracle.com/en/java/javase/11/docs/api/"))
+            }
+            
+            // Optional: Configure source links to GitHub
+            sourceLink {
+                localDirectory.set(file("src/main/java"))
+                remoteUrl.set(new URL("https://github.com/setup-studios/MC-Milsim/tree/main/src/main/java"))
+                remoteLineSuffix.set("#L")
+            }
+        }
+    }
+    
+    // Optional: Customize the footer
+    pluginsMapConfiguration.set([
+        "org.jetbrains.dokka.base.DokkaBase": """{ 
+            "footerMessage": "© 2025 Your Project Name"
+        }"""
+    ])
+}
+
+// Task to make it easier to generate docs locally
+task generateDocs {
+    dependsOn dokkaHtml
+    doLast {
+        println "Documentation generated at: ${dokkaHtml.outputDirectory.get()}"
     }
 }
 
