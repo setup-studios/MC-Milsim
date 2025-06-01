@@ -27,6 +27,9 @@ jobs:
             ~/.gradle/wrapper
           key: gradle-${{ hashFiles('**/*.gradle*', '**/gradle.lockfile') }}
           restore-keys: gradle-
+          
+      -  name: Make gradlew executable
+         run: chmod +x ./gradlew
 
       - name: Generate Dokka HTML
         run: ./gradlew dokkaHtml
