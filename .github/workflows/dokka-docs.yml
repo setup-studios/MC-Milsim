@@ -34,6 +34,6 @@ jobs:
       - name: Deploy Dokka docs to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.PAT_TOKEN }}
           publish_dir: ./build/dokka/html
           publish_branch: dokka-pages
