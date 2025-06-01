@@ -36,4 +36,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build/dokka/html
-          publish_branch: gh-pages  # or dokka-pages if you want to keep it separate
+          publish_branch: dokka-pages
