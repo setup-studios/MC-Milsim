@@ -7,6 +7,7 @@
 [![Minecraft](https://img.shields.io/badge/Minecraft-1.20.1-green.svg)](https://www.minecraft.net/) 
 [![Forge](https://img.shields.io/badge/Forge-Latest-orange.svg)](https://files.minecraftforge.net/net/minecraftforge/forge/) 
 [![Status](https://img.shields.io/badge/Status-pre--Alpha-blue.svg)](https://github.com/setup-studios/MC-Milsim)
+[![Javadoc](https://img.shields.io/badge/JavaDoc-Online-green)](https://setup-studios.github.io/MC-Milsim/)
 <h4>
     <a href="https://github.com/setup-studios/MC-Milsim/docs">MC-Milsim Wiki</a>
   <span> · </span>
