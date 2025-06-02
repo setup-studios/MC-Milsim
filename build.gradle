@@ -224,30 +224,340 @@ dokkaHtml {
     ])
 }
 
-// Enhanced Javadoc configuration with modern sidebar
+// Enhanced Javadoc configuration with all modern Java 22 features
 javadoc {
     options.encoding = 'UTF-8'
     options.charSet = 'UTF-8'
     options.addStringOption('Xdoclint:none', '-quiet')
-    options.windowTitle = "MC Milsim Docs"
-    options.docTitle = "MC Milsim Docs"
+    options.windowTitle = "MC Milsim API"
+    options.docTitle = "MC Milsim API Documentation"
     options.header = "<b>MC Milsim</b>"
     options.bottom = "Copyright © 2025 Setup Studios. All rights reserved."
     
-    // Enable modern HTML5 with sidebar navigation
+    // ===== MODERN INTERFACE FEATURES =====
+    // Enable HTML5 output (default in Java 22, but explicit is better)
     options.addBooleanOption('html5', true)
-    options.addStringOption('Xdoclint:none', '-quiet')
     
-    // Add links to external documentation
+    // Enable search functionality with index
+    options.addBooleanOption('use', true)
+    options.addBooleanOption('splitindex', true)
+    
+    // Enable keywords for better search
+    options.addBooleanOption('keywords', true)
+    
+    // ===== NAVIGATION FEATURES =====
+    // Enable module navigation (if you have modules)
+    options.addBooleanOption('nomodule', false)
+    
+    // Create class hierarchy
+    options.addBooleanOption('tree', true)
+    
+    // Show author and version info
+    options.addBooleanOption('author', true)
+    options.addBooleanOption('version', true)
+    
+    // ===== ADVANCED FEATURES =====
+    // Enable snippets (Java 18+ feature for better code examples)
+    options.addBooleanOption('snippets', true)
+    
+    // Add custom tags for better documentation
+    options.addMultilineStringsOption('tag').setValue([
+        'apiNote:a:API Note:',
+        'implSpec:a:Implementation Requirements:',
+        'implNote:a:Implementation Note:'
+    ])
+    
+    // ===== CONDITIONAL NAVIGATION =====
+    // These options control when tabs are visible (like IntelliJ behavior)
+    
+    // Only show "Use" tab when there are actual usages
+    options.addBooleanOption('nohelp', false)
+    
+    // Control what gets included in navigation
+    options.addBooleanOption('notimestamp', true)
+    
+    // ===== SEARCH TAB FEATURES =====
+    // Enable comprehensive indexing for search
+    options.addStringOption('windowtitle', 'MC Milsim API')
+    options.addStringOption('doctitle', 'MC Milsim API Documentation')
+    
+    // Add external documentation links
     options.links(
         'https://docs.oracle.com/en/java/javase/22/docs/api/'
     )
     
-    // Add search functionality
-    options.addBooleanOption('use', true)
-    options.addBooleanOption('splitindex', true)
+    // ===== SIDEBAR AND LAYOUT =====
+    // Custom CSS for modern sidebar and layout
+    def customCss = createModernJavadocCSS()
+    if (customCss) {
+        options.addStringOption('stylesheetfile', customCss)
+    }
+    
+    // Add custom JavaScript for enhanced navigation
+    def customJs = createJavadocJS()
+    if (customJs) {
+        options.addFileOption('additionalparam', file(customJs))
+    }
     
     destinationDir = file("${buildDir}/docs/javadoc")
+}
+
+// Create modern CSS with sidebar and conditional navigation
+def createModernJavadocCSS() {
+    def cssFile = file("${buildDir}/javadoc-modern.css")
+    cssFile.parentFile.mkdirs()
+    
+    def cssContent = """
+/* ===== MODERN SEARCH INTERFACE ===== */
+.search-container {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+    padding: 12px;
+}
+
+.ui-autocomplete-input, input[type="search"] {
+    width: 100% !important;
+    max-width: 300px;
+    padding: 8px 16px 8px 40px;
+    border: 1px solid #ced4da;
+    border-radius: 20px;
+    font-size: 14px;
+    background: white url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%23666"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg>') no-repeat 12px center;
+    transition: all 0.2s;
+}
+
+.ui-autocomplete-input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+}
+
+/* ===== MODERN SIDEBAR ===== */
+.navigation {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 280px;
+    height: 100vh;
+    background: #f8f9fa;
+    border-right: 1px solid #dee2e6;
+    overflow-y: auto;
+    z-index: 999;
+}
+
+.content {
+    margin-left: 280px;
+    min-height: 100vh;
+}
+
+/* ===== CONDITIONAL TAB VISIBILITY ===== */
+.tab-nav {
+    display: flex;
+    background: white;
+    border-bottom: 1px solid #dee2e6;
+    overflow-x: auto;
+}
+
+.tab-nav a {
+    padding: 12px 20px;
+    color: #6c757d;
+    text-decoration: none;
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+    transition: all 0.2s;
+}
+
+.tab-nav a:hover {
+    color: #007bff;
+    background: #f8f9fa;
+}
+
+.tab-nav a.active {
+    color: #007bff;
+    border-bottom-color: #007bff;
+    font-weight: 500;
+}
+
+/* Hide tabs when not relevant */
+.tab nav a.disabled {
+    display: none;
+}
+
+/* ===== ENHANCED TYPOGRAPHY ===== */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.6;
+    color: #212529;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+}
+
+/* ===== CODE BLOCKS ===== */
+pre, code {
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    font-size: 0.9em;
+}
+
+pre {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 6px;
+    padding: 16px;
+    overflow-x: auto;
+    margin: 1em 0;
+}
+
+code {
+    background: #f1f3f4;
+    padding: 2px 6px;
+    border-radius: 3px;
+    color: #e83e8c;
+}
+
+/* ===== TABLES ===== */
+.memberSummary, .typeSummary {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1em 0;
+    background: white;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.memberSummary th, .memberSummary td,
+.typeSummary th, .typeSummary td {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid #f1f3f4;
+}
+
+.memberSummary th, .typeSummary th {
+    background: #f8f9fa;
+    font-weight: 600;
+    color: #495057;
+}
+
+.memberSummary tr:hover, .typeSummary tr:hover {
+    background: #f8f9fa;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+    .navigation {
+        transform: translateX(-100%);
+        transition: transform 0.3s;
+    }
+    
+    .navigation.open {
+        transform: translateX(0);
+    }
+    
+    .content {
+        margin-left: 0;
+    }
+    
+    .tab-nav {
+        flex-wrap: wrap;
+    }
+}
+
+/* ===== DARK MODE SUPPORT ===== */
+@media (prefers-color-scheme: dark) {
+    body {
+        background: #1a1a1a;
+        color: #e9ecef;
+    }
+    
+    .navigation {
+        background: #2d3748;
+        border-color: #4a5568;
+    }
+    
+    pre {
+        background: #2d3748;
+        border-color: #4a5568;
+        color: #e9ecef;
+    }
+    
+    .memberSummary, .typeSummary {
+        background: #2d3748;
+    }
+    
+    .memberSummary th, .typeSummary th {
+        background: #4a5568;
+    }
+}
+"""
+    
+    cssFile.text = cssContent
+    return cssFile.absolutePath
+}
+
+// Create JavaScript for enhanced navigation behavior
+def createJavadocJS() {
+    def jsFile = file("${buildDir}/javadoc-enhanced.js")
+    jsFile.parentFile.mkdirs()
+    
+    def jsContent = """
+// Enhanced Javadoc navigation
+document.addEventListener('DOMContentLoaded', function() {
+    // Hide tabs that don't have content (like IntelliJ behavior)
+    const tabs = document.querySelectorAll('.tab-nav a');
+    tabs.forEach(tab => {
+        const href = tab.getAttribute('href');
+        if (href && href.includes('package-use') || href.includes('class-use')) {
+            // Check if the linked page has actual content
+            fetch(href, { method: 'HEAD' })
+                .then(response => {
+                    if (!response.ok) {
+                        tab.style.display = 'none';
+                    }
+                })
+                .catch(() => {
+                    tab.style.display = 'none';
+                });
+        }
+    });
+    
+    // Enhanced search functionality
+    const searchInput = document.querySelector('input[type="search"]');
+    if (searchInput) {
+        searchInput.placeholder = 'Search (MC Milsim API)';
+        
+        // Add live search filtering
+        searchInput.addEventListener('input', function(e) {
+            const query = e.target.value.toLowerCase();
+            // Implementation for live filtering would go here
+        });
+    }
+    
+    // Mobile navigation toggle
+    const navToggle = document.createElement('button');
+    navToggle.innerHTML = '☰';
+    navToggle.style.cssText = 'position:fixed;top:10px;left:10px;z-index:1001;background:#007bff;color:white;border:none;padding:8px 12px;border-radius:4px;display:none;';
+    
+    if (window.innerWidth <= 768) {
+        navToggle.style.display = 'block';
+        document.body.appendChild(navToggle);
+        
+        navToggle.addEventListener('click', function() {
+            const nav = document.querySelector('.navigation');
+            nav.classList.toggle('open');
+        });
+    }
+});
+"""
+    
+    jsFile.text = jsContent
+    return jsFile.absolutePath
 }
 
 // Task to generate both documentation types
