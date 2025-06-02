@@ -1,10 +1,15 @@
 name: Generate and Deploy Documentation
-
 on:
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
+
+# Set permissions for GitHub Pages deployment
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 # Allow only one concurrent deployment
 concurrency:
@@ -32,7 +37,17 @@ jobs:
         run: chmod +x gradlew
         
       - name: Generate both Javadoc and Dokka documentation
-        run: ./gradlew combineDocs
+        run: ./gradlew combineDocs --info
+        
+      - name: Debug - List generated files
+        run: |
+          echo "=== Build directory structure ==="
+          find build -type f -name "*.html" | head -20
+          echo "=== Combined docs directory ==="
+          ls -la build/docs/combined/ || echo "Combined directory doesn't exist"
+          echo "=== Combined docs subdirectories ==="
+          ls -la build/docs/combined/dokka/ || echo "Dokka directory doesn't exist"
+          ls -la build/docs/combined/javadoc/ || echo "Javadoc directory doesn't exist"
         
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -55,9 +70,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
-# Set permissions for GitHub Pages deployment
-permissions:
-  contents: read
-  pages: write
-  id-token: write
