@@ -264,15 +264,24 @@ task combineDocs(type: Copy) {
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     dependsOn javadoc, dokkaHtml
     
-    // Copy Dokka docs to dokka subdirectory  
-    from dokkaHtml.outputDirectory
-    into "${buildDir}/docs/combined/dokka"
-    
-    // Copy Javadoc to javadoc subdirectory
-    from javadoc.destinationDir
-    into "${buildDir}/docs/combined/javadoc"
+    doFirst {
+        // Clean the combined docs directory first
+        delete "${buildDir}/docs/combined"
+    }
     
     doLast {
+        // Copy Dokka docs to dokka subdirectory  
+        copy {
+            from dokkaHtml.outputDirectory
+            into "${buildDir}/docs/combined/dokka"
+        }
+        
+        // Copy Javadoc to javadoc subdirectory
+        copy {
+            from javadoc.destinationDir
+            into "${buildDir}/docs/combined/javadoc"
+        }
+        
         // Create an index.html that provides navigation between both
         def indexContent = """
 <!DOCTYPE html>
@@ -388,4 +397,3 @@ task combineDocs(type: Copy) {
         println "Javadoc docs: ${buildDir}/docs/combined/javadoc"
     }
 }
-
