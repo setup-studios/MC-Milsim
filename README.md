@@ -95,8 +95,8 @@ The official **MC-Milsim Wiki** is your go-to place for:
 * **Thatsmarterguy** - Co-Founder & Developer
   Joined early to shape the development of MC-Milsim. As a core developer, he contributes to coding the foundational systems and overall gameplay mechanics.
 
-* **Venicro** - Developer
-  Focuses on smaller features and general improvements to the mod, enhancing the overall experience.
+* **Stravido** - Developer
+  Also a dev helping/making a few features here and there, but still contributing and helping a good bit with the project when ever he can.
 
 * **Milkychicken** - Developer
   Works on additional features and game mechanics, contributing more to core gameplay systems. (He is a god dev, will make it big one day. Still says he does not know shit)
