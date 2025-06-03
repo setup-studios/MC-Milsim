@@ -17,6 +17,7 @@ public class ModPlayer {
     private String name;      // Player's display name
     private final UUID uuid;        // Unique identifier for the player
     private Team team;       // Player's assigned team
+   // private PlayerRole role; // Asign Player role
 
     /**
      * Constructs a new ModPlayers instance with the specified parameters.
@@ -97,4 +98,7 @@ public class ModPlayer {
     public Player getPlayer() {
         return player;
     }
+
+   // public PlayerRole getRole() { return this.role; }
+   // public void setRole(PlayerRole role) { this.role = role; }
 }
