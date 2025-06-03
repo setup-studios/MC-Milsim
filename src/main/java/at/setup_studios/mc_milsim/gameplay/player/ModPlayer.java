@@ -26,16 +26,23 @@ public class ModPlayer {
      * @param player The Minecraft player instance
      */
     public ModPlayer(UUID uuid, String name, Player player) {
-        if (uuid == null || name == null || player == null) {
-            ModLogger.error("Attempted to create ModPlayers with null values - UUID: " + uuid + ", name: " + name + ", player: " + player);
-            this.uuid = null;
-            return;
+        if (uuid == null) {
+            ModLogger.error("UUID cannot be null");
+            throw new IllegalArgumentException("UUID cannot be null");
+        }
+        if (name == null) {
+            ModLogger.error("Name cannot be null");
+            throw new IllegalArgumentException("Name cannot be null");
+        }
+        if (player == null) {
+            ModLogger.error("Player instance cannot be null");
+            throw new IllegalArgumentException("Player instance cannot be null");
         }
         this.name = name;
         this.uuid = uuid;
         this.team = null;    // Player starts with no team assigned
         this.player = player;
-        ModLogger.debug("Created new ModPlayers instance for player: " + name + " (UUID: " + uuid + ")");
+        ModLogger.info("Created new ModPlayers instance for player: " + name + " (UUID: " + uuid + ")");
     }
 
     /**
@@ -56,59 +63,12 @@ public class ModPlayer {
     }
 
     /**
-     * Assigns the player to a specific team.
+     * Returns a string representation of the player, including the player's name, UUID,
+     * and associated team information, if applicable. Each attribute is formatted using
+     * Minecraft's text formatting for better visual distinction in the output.
      *
-     * @param team The team to assign the player to
+     * @return a formatted string representation of the player's details
      */
-    public void setTeam(Team team) {
-        this.team = team;
-    }
-
-    /**
-     * Retrieves the player's unique identifier.
-     *
-     * @return The UUID of the player
-     */
-    public UUID getUUID() {
-        return uuid;
-    }
-
-    /**
-     * Retrieves the player's display name.
-     *
-     * @return The name of the player
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * Retrieves the player's current team assignment.
-     *
-     * @return The team the player is assigned to, or null if not assigned to any team
-     */
-    public Team getTeam() {
-        return team;
-    }
-
-    /**
-     * Retrieves the Minecraft player instance.
-     *
-     * @return The current Minecraft player instance
-     */
-    public Player getPlayer() {
-        return player;
-    }
-
-    /**
-     * Checks if the player is currently assigned to a team.
-     *
-     * @return true if the player is on a team, false otherwise
-     */
-    public boolean hasTeam() {
-        return team != null;
-    }
-
     @Override
     public String toString() {
         return ChatFormatting.AQUA + name +
@@ -117,4 +77,24 @@ public class ModPlayer {
                 ChatFormatting.RESET;
     }
 
+    public void setTeam(Team team) {
+        this.team = team;
+    }
+    public Team getTeam() {
+        return team;
+    }
+    public boolean hasTeam() {
+        return team != null;
+    }
+
+    public UUID getUUID() {
+        return uuid;
+    }
+    public String getName() {
+        return name;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
 }

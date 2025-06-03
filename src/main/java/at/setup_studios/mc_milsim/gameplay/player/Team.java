@@ -25,12 +25,15 @@ public class Team {
     public Team(String teamName, int maxPlayers, ChatFormatting color) {
         if (teamName == null || teamName.trim().isEmpty()) {
             ModLogger.error("Team name cannot be null or empty");
+            throw new IllegalArgumentException("Team name cannot be null or empty");
         }
         if (maxPlayers <= 0) {
             ModLogger.error("Maximum players must be positive, got: " + maxPlayers);
+            throw new IllegalArgumentException("Maximum players must be positive");
         }
         if (color == null) {
             ModLogger.error("Team color cannot be null");
+            throw new IllegalArgumentException("Team color cannot be null");
         }
 
         this.name = teamName;
@@ -81,18 +84,6 @@ public class Team {
     }
 
     /**
-     * Gets the list of all players in the team.
-     *
-     * @return ArrayList containing all players in the team
-     */
-    public ArrayList<ModPlayer> getPlayers() {
-        if (playerList.isEmpty()) {
-            ModLogger.debug("Returning empty player list for team: " + this.name);
-        }
-        return playerList;
-    }
-
-    /**
      * Converts the list of players to a list of player names.
      *
      * @return ArrayList containing names of all players in the team
@@ -111,51 +102,6 @@ public class Team {
     }
 
     /**
-     * Gets the team name.
-     *
-     * @return The name of the team
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * Gets the team's color formatting.
-     *
-     * @return ChatFormatting object representing the team's color
-     */
-    public ChatFormatting getColor(){
-        return nameColor;
-    }
-
-    /**
-     * Checks if the team has available space for new players.
-     *
-     * @return true if team has space, false if team is full
-     */
-    public boolean hasAvailableSpace() {
-        return playerList.size() < maxPlayers;
-    }
-
-    /**
-     * Gets the current number of players in the team.
-     *
-     * @return current number of players
-     */
-    public int getCurrentSize() {
-        return playerList.size();
-    }
-
-    /**
-     * Gets the maximum number of players allowed in the team.
-     *
-     * @return maximum number of players
-     */
-    public int getMaxPlayers() {
-        return maxPlayers;
-    }
-
-    /**
      * Returns a string representation of the team. The string includes the team's
      * name, the current number of players, the maximum number of players allowed,
      * and the color associated with the team's name.
@@ -169,5 +115,33 @@ public class Team {
                 playerList.size() + "/" + maxPlayers +
                 "]" + ChatFormatting.RESET;
     }
+
+    public ArrayList<ModPlayer> getPlayers() {
+        if (playerList.isEmpty()) {
+            ModLogger.debug("Returning empty player list for team: " + this.name);
+        }
+        return new ArrayList<>(playerList);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public ChatFormatting getColor(){
+        return nameColor;
+    }
+
+    public boolean hasAvailableSpace() {
+        return playerList.size() < maxPlayers;
+    }
+
+    public int getCurrentPlayers() {
+        return playerList.size();
+    }
+
+    public int getMaxPlayers() {
+        return maxPlayers;
+    }
+
 
 }
