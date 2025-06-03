@@ -8,11 +8,15 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
+
+import java.util.Map;
 import java.util.Random;
 import net.minecraft.world.level.levelgen.Heightmap.Types;
+import at.setup_studios.mc_milsim.util.ModLogger;
+
 
 public class Spawn {
-
+    private static final Random RANDOM = new Random();
     /**
      * Spawns a player at the given location, clears inventory, and gives class items.
      *
@@ -24,21 +28,36 @@ public class Spawn {
 
     public static void spawnPlayerAt(ModPlayer modPlayer, double x, double y, double z) {
         ServerPlayer player = (ServerPlayer) modPlayer.getPlayer();
-        /*TODO create Role class
+        /*TODO create Role class*/
         Role currentRole = modPlayer.getRole();
-        */
+
         // Getting a valid spawnPoint
         Vec3 safeSpawn = findSafeRandomSpawn(player.serverLevel(),new BlockPos((int)x, (int)y, (int)z),10,10);
         // Teleport player to the valid spawnPoint
         player.teleportTo(player.serverLevel(), safeSpawn.x, safeSpawn.y, safeSpawn.z, player.getYRot(), player.getXRot());
         player.getInventory().clearContent();
-        /* Get player role and therefore add the, to the role belonging items to the inventory
+        // Get player role and therefore add the to the role belonging items to the inventory
         if (currentRole != null) {
-            for (ItemStack stack : currentRole.getInventoryItems()) {
-                player.getInventory().add(stack.copy()); // Copy to avoid sharing item references
+            // Inventarplätze setzen
+            Map<Integer, ItemStack> items = currentRole.getInventoryItems();
+            for (Map.Entry<Integer, ItemStack> entry : items.entrySet()) {
+                int slot = entry.getKey();
+                ItemStack stack = entry.getValue();
+                if (slot >= 0 && slot < player.getInventory().items.size()) {
+                    player.getInventory().setItem(slot, stack.copy());
+                }
             }
-       }
-       */
+
+            // equip armor (index 0 = helmet ... 3 = boots)
+            ItemStack[] armor = currentRole.getArmor();
+            if (armor != null && armor.length == 4) {
+                for (int i = 0; i < 4; i++) {
+                    player.getInventory().armor.set(i, armor[i].copy());
+                }
+            }
+        } else {
+            ModLogger.error("Player {} has no role assigned! " + player.getName().getString());
+        }
     }
 
     /**
@@ -51,11 +70,9 @@ public class Spawn {
      */
 
     public static Vec3 findSafeRandomSpawn(ServerLevel level, BlockPos center, int radius, int maxAttempts) {
-        Random random = new Random();
-
         for (int attempt = 0; attempt < maxAttempts; attempt++) {
-            int dx = random.nextInt(radius * 2 + 1) - radius;
-            int dz = random.nextInt(radius * 2 + 1) - radius;
+            int dx = RANDOM.nextInt(radius * 2 + 1) - radius;
+            int dz = RANDOM.nextInt(radius * 2 + 1) - radius;
             BlockPos tryPos = center.offset(dx, 0, dz);
 
             // Get top Y at that x/z
