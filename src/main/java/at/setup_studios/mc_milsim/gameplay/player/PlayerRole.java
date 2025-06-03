@@ -1,9 +1,7 @@
 package at.setup_studios.mc_milsim.gameplay.player;
 
 import at.setup_studios.mc_milsim.util.ModLogger;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 
 import java.util.ArrayList;
 import java.util.HashMap;

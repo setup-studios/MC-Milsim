@@ -1,6 +1,7 @@
 package at.setup_studios.mc_milsim.gameplay.player;
 
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.core.BlockPos;
@@ -9,6 +10,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import net.minecraft.world.level.levelgen.Heightmap.Types;
@@ -29,7 +31,7 @@ public class Spawn {
     public static void spawnPlayerAt(ModPlayer modPlayer, double x, double y, double z) {
         ServerPlayer player = (ServerPlayer) modPlayer.getPlayer();
         /*TODO create Role class*/
-        Role currentRole = modPlayer.getRole();
+        PlayerRole currentRole = modPlayer.getRole();
 
         // Getting a valid spawnPoint
         Vec3 safeSpawn = findSafeRandomSpawn(player.serverLevel(),new BlockPos((int)x, (int)y, (int)z),10,10);
@@ -39,7 +41,7 @@ public class Spawn {
         // Get player role and therefore add the to the role belonging items to the inventory
         if (currentRole != null) {
             // Inventarplätze setzen
-            Map<Integer, ItemStack> items = currentRole.getInventoryItems();
+            Map<Integer, ItemStack> items = currentRole.getInventory();
             for (Map.Entry<Integer, ItemStack> entry : items.entrySet()) {
                 int slot = entry.getKey();
                 ItemStack stack = entry.getValue();
@@ -49,10 +51,10 @@ public class Spawn {
             }
 
             // equip armor (index 0 = helmet ... 3 = boots)
-            ItemStack[] armor = currentRole.getArmor();
-            if (armor != null && armor.length == 4) {
+            List<ItemStack> armor = currentRole.getArmor();
+            if (armor != null && armor.size() == 4) {
                 for (int i = 0; i < 4; i++) {
-                    player.getInventory().armor.set(i, armor[i].copy());
+                    player.getInventory().armor.set(i, armor.get(i).copy());
                 }
             }
         } else {
@@ -69,7 +71,7 @@ public class Spawn {
      * @return              Returns a Vec3 with coordinates of a valid spawn spot for the player
      */
 
-    public static Vec3 findSafeRandomSpawn(ServerLevel level, BlockPos center, int radius, int maxAttempts) {
+    private static Vec3 findSafeRandomSpawn(ServerLevel level, BlockPos center, int radius, int maxAttempts) {
         for (int attempt = 0; attempt < maxAttempts; attempt++) {
             int dx = RANDOM.nextInt(radius * 2 + 1) - radius;
             int dz = RANDOM.nextInt(radius * 2 + 1) - radius;

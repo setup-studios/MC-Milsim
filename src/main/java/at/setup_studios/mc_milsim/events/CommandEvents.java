@@ -12,11 +12,12 @@ public class CommandEvents {
     public static void onCommandsRegister(RegisterCommandsEvent event) {
         GetPlayerTeamCommand.register(event.getDispatcher());
         GetTeamPlayerListCommand.register(event.getDispatcher());
-        SetPlayerTeamCommand.register(event.getDispatcher());
+        SpawnPlayerCommand.register(event.getDispatcher());
         GetTeamListCommand.register(event.getDispatcher());
         CreateTeamCommand.register(event.getDispatcher());
         DeleteTeamCommand.register(event.getDispatcher());
         GetTeamInfoCommand.register(event.getDispatcher());
         RemovePlayerTeamCommand.register(event.getDispatcher());
+        SpawnPlayerCommand.register(event.getDispatcher());
     }
 }

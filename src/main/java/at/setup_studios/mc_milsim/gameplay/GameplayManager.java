@@ -1,13 +1,17 @@
 package at.setup_studios.mc_milsim.gameplay;
 
 import at.setup_studios.mc_milsim.gameplay.player.ModPlayer;
+import at.setup_studios.mc_milsim.gameplay.player.PlayerRole;
 import at.setup_studios.mc_milsim.gameplay.player.Team;
 import at.setup_studios.mc_milsim.util.ModLogger;
 import net.minecraft.ChatFormatting;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -27,6 +31,24 @@ public class GameplayManager {
         teamList.add(new Team("Red", 5, ChatFormatting.RED));
         teamList.add(new Team("Blue", 5, ChatFormatting.BLUE));
     }
+/* THIS IS JUST FOR TESTING
+    private static final PlayerRole RIFLER;
+
+    static {
+        RIFLER = new PlayerRole("Rifler", "THE RIFLER", 5, "THE SMALL FUCKER, that loves to shoot guns");
+        RIFLER.addItem(0, new ItemStack(Items.BOW));
+        RIFLER.addItem(1, new ItemStack(Items.GOLDEN_APPLE, 32));
+        RIFLER.addItem(9, new ItemStack(Items.ARROW, 64));
+        RIFLER.addItem(15, new ItemStack(Items.ARROW, 64));
+        RIFLER.addItem(25, new ItemStack(Items.EGG, 5));
+        List<ItemStack> armor = new ArrayList<>();
+        armor.add(new ItemStack(Items.CHAINMAIL_BOOTS));
+        armor.add(new ItemStack(Items.NETHERITE_LEGGINGS));
+        armor.add(new ItemStack(Items.DIAMOND_CHESTPLATE));
+        armor.add(new ItemStack(Items.NETHERITE_HELMET));
+        RIFLER.setArmor(armor);
+    }
+*/
     //Privat constructor since this is a utility class
     private GameplayManager() {
         ModLogger.error("Utility class should not be instantiated");
