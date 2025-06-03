@@ -153,9 +153,7 @@ public class GameplayManager {
      * Gets the list of all teams in the game.
      * @return ArrayList containing all teams
      */
-    public static ArrayList<Team> getTeamList() {
-        return teamList;
-    }
+    public static ArrayList<Team> getTeamList() { return new ArrayList<>(teamList); }
 
     /**
      * Creates a new team with specified parameters.
