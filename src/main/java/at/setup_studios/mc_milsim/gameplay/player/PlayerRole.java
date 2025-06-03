@@ -128,22 +128,50 @@ public class PlayerRole {
     }
 
     // Basic getters for role properties
-    public String getName() { return name; }
-    public String getDisplayName() { return displayName; }
-    public String getDescription() { return description; }
-    public int getMaxPlayersPerTeam() { return maxPlayersPerTeam; }
+    public String getName() {
+        return name;
+    }
+    public String getDisplayName() {
+        return displayName;
+    }
+    public String getDescription() {
+        return description;
+    }
+    public int getMaxPlayersPerTeam() {
+        return maxPlayersPerTeam;
+    }
 
     // Inventory management methods
-    public ItemStack getItemAtSlot(Integer slot) { return this.inv.get(slot).copy(); }
-    public boolean hasItemInSlot(Integer slot) { return inv.containsKey(slot); }
-    public void addItem(Integer slot, ItemStack item) { this.inv.put(slot, item); }
-    public void removeItem(Integer slot) { this.inv.remove(slot); }
-    public int getInventorySize() { return inv.size(); }
+    public ItemStack getItemAtSlot(Integer slot) {
+        return this.inv.get(slot).copy();
+    }
+    public boolean hasItemInSlot(Integer slot) {
+        return inv.containsKey(slot);
+    }
+    public void addItem(Integer slot, ItemStack item) {
+        this.inv.put(slot, item);
+    }
+    public void removeItem(Integer slot) {
+        this.inv.remove(slot);
+    }
+    public int getInventorySize() {
+        return inv.size();
+    }
 
     // Armor management methods
-    public void setArmorSlot(int slot, ItemStack item) { this.armor.set(slot, item); }
-    public ItemStack getHelmet() { return this.armor.get(0).copy(); }
-    public ItemStack getChestplate() { return this.armor.get(1).copy(); }
-    public ItemStack getLeggins() { return this.armor.get(2).copy(); }
-    public ItemStack getBoots() { return this.armor.get(3).copy(); }
+    public void setArmorSlot(int slot, ItemStack item) {
+        this.armor.set(slot, item);
+    }
+    public ItemStack getHelmet() {
+        return this.armor.get(0).copy();
+    }
+    public ItemStack getChestplate() {
+        return this.armor.get(1).copy();
+    }
+    public ItemStack getLeggins() {
+        return this.armor.get(2).copy();
+    }
+    public ItemStack getBoots() {
+        return this.armor.get(3).copy();
+    }
 }
