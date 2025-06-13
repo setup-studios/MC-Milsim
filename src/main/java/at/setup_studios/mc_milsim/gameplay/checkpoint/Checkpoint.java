@@ -2,12 +2,14 @@ package at.setup_studios.mc_milsim.gameplay.checkpoint;
 
 import at.setup_studios.mc_milsim.gameplay.player.Team;
 import at.setup_studios.mc_milsim.util.ModLogger;
+import net.minecraftforge.fml.common.Mod;
 
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Checkpoint {
+    private final String name;
     private final int x;
     private final int z;
     private final int maxY;
@@ -18,7 +20,7 @@ public class Checkpoint {
     // idea, -1000 points == team blue, 1000 points team red
     HashMap<Team, Integer> points = new HashMap<>();
 
-    public Checkpoint (int x, int z, int radius, int maxY, int maxPoints) {
+    public Checkpoint (String name, int x, int z, int radius, int maxY, int maxPoints) {
         if (x <= 0) {
             ModLogger.error("X coordinates cannot be 0");
             throw new IllegalArgumentException("X coordinates cannot be 0");
@@ -31,10 +33,15 @@ public class Checkpoint {
             ModLogger.error("Radius cannot be 0");
             throw new IllegalArgumentException("Radius cannot be 0");
         }
+        if (name == null) {
+            ModLogger.error("Name cannot be null");
+            throw new IllegalArgumentException("Name cannot be null");
+        }
         if (maxPoints <= 0) {
             this.maxPoints = 500;
         }
         else this.maxPoints = maxPoints;
+        this.name = name;
         this.x = x;
         this.z = z;
         this.r = radius;
@@ -51,12 +58,20 @@ public class Checkpoint {
             checkStatus();
             return;
         }
-        if (amount >= points.get(getTeamWithHighestValue())) points.put(getTeamWithHighestValue(), 0);
-        else points.put(getTeamWithHighestValue(), points.get(getTeamWithHighestValue())-amount);
-        points.put(team, points.get(team)+amount);
-        checkOwnedBy();
-        checkStatus();
-        return;
+        if (amount >= points.get(getTeamWithHighestValue())) {
+            int diff = amount - points.get(getTeamWithHighestValue());
+            points.put(getTeamWithHighestValue(), 0);
+            points.put(team, points.getOrDefault(team, 0) + diff);
+            return;
+        }
+        else {
+            points.put(getTeamWithHighestValue(), points.get(getTeamWithHighestValue())-amount);
+        }
+        if (points.get(getTeamWithHighestValue())==0) {
+            points.put(team, points.get(team) + amount);
+            checkOwnedBy();
+            checkStatus();
+        }
     }
 
     public void checkOwnedBy () {

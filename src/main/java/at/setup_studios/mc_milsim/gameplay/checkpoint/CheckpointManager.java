@@ -3,6 +3,7 @@ package at.setup_studios.mc_milsim.gameplay.checkpoint;
 import at.setup_studios.mc_milsim.gameplay.GameplayManager;
 import at.setup_studios.mc_milsim.gameplay.player.ModPlayer;
 import at.setup_studios.mc_milsim.gameplay.player.Team;
+import at.setup_studios.mc_milsim.util.ModLogger;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
@@ -12,16 +13,22 @@ import net.minecraftforge.server.ServerLifecycleHooks;
 import java.util.*;
 
 public class CheckpointManager {
-    MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
-    PlayerList list = server.getPlayerList();
+    private static final MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
+    private static final PlayerList list = server.getPlayerList();
+    private static final List<Checkpoint> checkpointList = new ArrayList<>();
 
-    public Boolean checkPlayer (Checkpoint point, ServerPlayer player) {
-        BlockPos pos = player.blockPosition();
-        if (pos.getY()>point.getMaxY()) return false;
-        return (Math.sqrt(pos.getX()-point.getX())+Math.sqrt(pos.getZ()-point.getZ()))<=Math.sqrt(point.getRadius());
+    //Privat constructor since this is a utility class
+    private CheckpointManager() {
+        ModLogger.error("Utility class should not be instantiated");
     }
 
-    public List<ServerPlayer> inCheckPoint (Checkpoint point) {
+    public static Boolean checkPlayer(Checkpoint point, ServerPlayer player) {
+        BlockPos pos = player.blockPosition();
+        if (pos.getY() > point.getMaxY()) return false;
+        return (Math.sqrt(pos.getX() - point.getX()) + Math.sqrt(pos.getZ() - point.getZ())) <= Math.sqrt(point.getRadius());
+    }
+
+    public static List<ServerPlayer> inCheckPoint(Checkpoint point) {
         List<ServerPlayer> playerList = new ArrayList<>();
         for (ServerPlayer player : list.getPlayers()) {
             if (checkPlayer(point, player)) playerList.add(player);
@@ -29,49 +36,50 @@ public class CheckpointManager {
         return playerList;
     }
 
-    public List<ModPlayer> modPlayerInCheckPoint (Checkpoint point) {
+    public static List<ModPlayer> modPlayerInCheckPoint(Checkpoint point) {
         List<ServerPlayer> playerList = inCheckPoint(point);
-        List<ModPlayer> modPlayerList  = new ArrayList<>();
+        List<ModPlayer> modPlayerList = new ArrayList<>();
         for (ServerPlayer player : playerList) {
             modPlayerList.add(GameplayManager.getPlayerObject(player));
         }
         return modPlayerList;
     }
 
-    public void addPoints (Checkpoint point) {
+    public static void check(Checkpoint point) {
         HashMap<Team, Integer> playerCount = new HashMap<>();
 
         List<ModPlayer> modPlayerList = modPlayerInCheckPoint(point);
-        for (ModPlayer player: modPlayerList){
+        for (ModPlayer player : modPlayerList) {
             Team t = player.getTeam();
             playerCount.put(t, playerCount.getOrDefault(t, 0) + 1);
         }
-        List<Integer> sorted = playerCount.values().stream().sorted((i, j ) -> j - i).toList();
-        System.out.println(Arrays.toString(sorted.stream().mapToInt( i -> i).toArray()));
+        List<Integer> sorted = playerCount.values().stream().sorted((i, j) -> j - i).toList();
+        System.out.println(Arrays.toString(sorted.stream().mapToInt(i -> i).toArray()));
         if (sorted.size() >= 2) {
             int diff = sorted.get(0) - sorted.get(1);
             if (diff <= 0) return;
             Team team = getTeamWithValue(playerCount, sorted.get(0));
             switch (diff) {
-                //example numbers, can be changed later when balancing (not me)
-                case 1: point.addPoints(team, 5);
-                case 2: point.addPoints(team, 10);
-                case 3: point.addPoints(team, 15);
-                case 4: point.addPoints(team, 20);
-                case 5: point.addPoints(team, 22);
-                case 6: point.addPoints(team, 24);
-                default: point.addPoints(team, 26);
+                case 1, 2, 3, 4 -> point.addPoints(team, diff * 5);
+                case 5 -> point.addPoints(team, 22);
+                case 6 -> point.addPoints(team, 24);
+                default -> point.addPoints(team, 26);
             }
         }
-
     }
 
-    public Team getTeamWithValue(HashMap<Team, Integer> playerCount, int value) {
+    public static Team getTeamWithValue(HashMap<Team, Integer> playerCount, int value) {
         for (Map.Entry<Team, Integer> entry : playerCount.entrySet()) {
             if (entry.getValue() == value) {
                 return entry.getKey();
             }
         }
         return null;
+    }
+
+    public static void checkAll() {
+        for (Checkpoint point : checkpointList) {
+            check(point);
+        }
     }
 }
