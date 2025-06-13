@@ -4,9 +4,7 @@ import at.setup_studios.mc_milsim.gameplay.player.Team;
 import at.setup_studios.mc_milsim.util.ModLogger;
 import net.minecraftforge.fml.common.Mod;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Checkpoint {
     private final String name;
@@ -14,13 +12,14 @@ public class Checkpoint {
     private final int z;
     private final int maxY;
     private final int r;
+    private int orderPos;
     private String status;
     private Team ownedBy;
     private final int maxPoints;
     // idea, -1000 points == team blue, 1000 points team red
     HashMap<Team, Integer> points = new HashMap<>();
 
-    public Checkpoint (String name, int x, int z, int radius, int maxY, int maxPoints) {
+    public Checkpoint (String name, int x, int z, int maxY, int radius, int maxPoints, int position) {
         if (x <= 0) {
             ModLogger.error("X coordinates cannot be 0");
             throw new IllegalArgumentException("X coordinates cannot be 0");
@@ -45,6 +44,7 @@ public class Checkpoint {
         this.x = x;
         this.z = z;
         this.r = radius;
+        this.orderPos = position; // Default value indicating not set
         if (maxY > 0) this.maxY = maxY;
         else this.maxY = 99999;
         status = "neutral";
@@ -72,6 +72,14 @@ public class Checkpoint {
             checkOwnedBy();
             checkStatus();
         }
+    }
+
+    public void setOrderPos (int position) {
+        this.orderPos = position;
+    }
+
+    public int getOrderPos () {
+        return orderPos;
     }
 
     public void checkOwnedBy () {

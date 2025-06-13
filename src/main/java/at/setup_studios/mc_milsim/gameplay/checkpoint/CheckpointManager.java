@@ -82,4 +82,27 @@ public class CheckpointManager {
             check(point);
         }
     }
+
+    public static boolean isOrderPositionTaken(int position) {
+        return checkpointList.stream().anyMatch(cp -> cp.getOrderPos() == position);
+    }
+
+    public static void addCheckpoint (String name, int x, int z, int maxY, int radius, int maxPoints, int position) {
+        if (isOrderPositionTaken(position)) {
+            ModLogger.info("Position already taken, making space by moving");
+            for (Checkpoint point : checkpointList) {
+                if (point.getOrderPos() >= position) {
+                    point.setOrderPos(point.getOrderPos()+1);
+                }
+            }
+            ModLogger.info("Made space for new Checkpoint: "+ name);
+        }
+        checkpointList.add(new Checkpoint(name, x, z, maxY, radius, maxPoints, position));
+        ModLogger.info("New Checkpoint made");
+    }
+
+    public static ArrayList<Checkpoint> getCheckpointList () {
+        return new ArrayList<>(checkpointList);
+    }
+
 }
