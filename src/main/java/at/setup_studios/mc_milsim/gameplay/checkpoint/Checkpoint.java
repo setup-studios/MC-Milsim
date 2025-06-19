@@ -2,7 +2,6 @@ package at.setup_studios.mc_milsim.gameplay.checkpoint;
 
 import at.setup_studios.mc_milsim.gameplay.player.Team;
 import at.setup_studios.mc_milsim.util.ModLogger;
-import net.minecraftforge.fml.common.Mod;
 
 import java.util.*;
 
@@ -20,14 +19,6 @@ public class Checkpoint {
     HashMap<Team, Integer> points = new HashMap<>();
 
     public Checkpoint (String name, int x, int z, int maxY, int radius, int maxPoints, int position) {
-        if (x <= 0) {
-            ModLogger.error("X coordinates cannot be 0");
-            throw new IllegalArgumentException("X coordinates cannot be 0");
-        }
-        if (z <= 0) {
-            ModLogger.error("Z coordinates cannot be 0");
-            throw new IllegalArgumentException("Z coordinates cannot be 0");
-        }
         if (radius <= 0) {
             ModLogger.error("Radius cannot be 0");
             throw new IllegalArgumentException("Radius cannot be 0");

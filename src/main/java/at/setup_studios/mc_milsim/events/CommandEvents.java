@@ -20,5 +20,7 @@ public class CommandEvents {
         RemovePlayerTeamCommand.register(event.getDispatcher());
         SpawnPlayerCommand.register(event.getDispatcher());
         SetPlayerTeamCommand.register(event.getDispatcher());
+        CreateCheckpointOnCordsCommand.register(event.getDispatcher());
+        CreateCheckpointOnPlayerCommand.register(event.getDispatcher());
     }
 }

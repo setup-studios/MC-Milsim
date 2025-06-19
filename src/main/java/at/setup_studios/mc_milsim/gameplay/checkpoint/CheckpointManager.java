@@ -4,7 +4,10 @@ import at.setup_studios.mc_milsim.gameplay.GameplayManager;
 import at.setup_studios.mc_milsim.gameplay.player.ModPlayer;
 import at.setup_studios.mc_milsim.gameplay.player.Team;
 import at.setup_studios.mc_milsim.util.ModLogger;
+import net.minecraft.ChatFormatting;
+import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.players.PlayerList;
@@ -17,7 +20,7 @@ public class CheckpointManager {
     private static final PlayerList list = server.getPlayerList();
     private static final List<Checkpoint> checkpointList = new ArrayList<>();
 
-    //Privat constructor since this is a utility class
+    //Private constructor since this is a utility class
     private CheckpointManager() {
         ModLogger.error("Utility class should not be instantiated");
     }
@@ -25,7 +28,7 @@ public class CheckpointManager {
     public static Boolean checkPlayer(Checkpoint point, ServerPlayer player) {
         BlockPos pos = player.blockPosition();
         if (pos.getY() > point.getMaxY()) return false;
-        return (Math.sqrt(pos.getX() - point.getX()) + Math.sqrt(pos.getZ() - point.getZ())) <= Math.sqrt(point.getRadius());
+        return Math.pow(point.getX()-player.getX(), 2) + Math.pow(point.getZ() - player.getZ(), 2) <= Math.pow(point.getRadius(), 2);
     }
 
     public static List<ServerPlayer> inCheckPoint(Checkpoint point) {
@@ -99,6 +102,18 @@ public class CheckpointManager {
         }
         checkpointList.add(new Checkpoint(name, x, z, maxY, radius, maxPoints, position));
         ModLogger.info("New Checkpoint made");
+    }
+
+    public static int addCheckpointWithMessage(CommandSourceStack source, String name, int maxY, int radius, int orderPos, int maxPoints, int x, int z) {
+        try {
+            addCheckpoint(name, x, z, maxY, radius, maxPoints, orderPos);
+            source.sendSuccess(() -> Component.literal("Checkpoint has been created").withStyle(ChatFormatting.GREEN), false);
+            return 1;
+        } catch (IllegalArgumentException e) {
+            ModLogger.error("Error creating checkpoint: " + e.getMessage());
+            source.sendFailure(Component.literal("Error creating checkpoint: " + e.getMessage()));
+            return 0;
+        }
     }
 
     public static ArrayList<Checkpoint> getCheckpointList () {
